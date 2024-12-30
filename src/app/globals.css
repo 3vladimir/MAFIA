@@ -2,20 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: IransnasMedium;
+  src: url(../../public/fonts/IRANSansWeb-Medium.ttf);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@font-face {
+  font-family: IransnasBold;
+  src: url(../../public/fonts/IRANSansWeb\ Bold.ttf);
+}
+
+@font-face {
+  font-family: IransnasLight;
+  src: url(../../public/fonts/IRANSansWeb\ Light.ttf);
+}
+@font-face {
+  font-family: gothic;
+  src: url(../../public/fonts/Darkcastle_PERSONAL_USE_ONLY.otf);
+}
+
+.gotichFont{
+  font-family: gothic;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: IransnasMedium;
 }
