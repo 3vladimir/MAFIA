@@ -1,0 +1,5 @@
+export const UNKNOWN = 'unknown'
+export const CITIZEN = 'citizen'
+export const MAFIA = 'mafia'
+export const ALIVE = 'alive'
+export const DEAD = 'dead'

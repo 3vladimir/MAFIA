@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+"use client";
 import Link from "next/link";
+import { Provider } from "react-redux";
+import { store } from "../../redux/store/store";
 import { ContainerOfHeaderAndMain } from "../../components";
 
 function Main() {
@@ -9,7 +12,9 @@ function Main() {
 export default function App() {
   return (
     <>
-      <ContainerOfHeaderAndMain Main={<Main />} />
+      <Provider store={store}>
+        <ContainerOfHeaderAndMain Main={<Main />} />
+      </Provider>
     </>
   );
 }

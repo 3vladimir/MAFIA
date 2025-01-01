@@ -1,6 +1,13 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+"use client";
+import * as React from "react";
 import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, AppDispatch } from "../../redux/store/store";
+import { addPlayer, clearList } from "../../redux/reducers/playersReducer";
 import { distributionOfRolesAddress } from "../../routes";
 import { randomNames } from "../../lib/randomNames";
+import { UNKNOWN, ALIVE } from "../../lib/playersInfoValuesConstants";
 
 type Props = {
   listOfPlayers: string[];
@@ -14,6 +21,21 @@ export default function Form({
   setListOfPlayers,
 }: Props) {
   const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
+  const playersInfo = useSelector((state: RootState) => state.players.value);
+
+  function registerNamesOfPlayers() {
+    listOfPlayers.forEach((element) => {
+      dispatch(
+        addPlayer({
+          name: element,
+          side: UNKNOWN,
+          role: UNKNOWN,
+          status: ALIVE,
+        })
+      );
+    });
+  }
 
   function handleClickRandomNames(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
@@ -28,8 +50,14 @@ export default function Form({
     setListOfPlayers(newListOfPlayers);
   }
 
+  React.useEffect(() => {
+    localStorage.setItem("playersInfo", JSON.stringify(playersInfo));
+  }, [playersInfo]);
+
   function handleSubmitNamesOfPlayers(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    dispatch(clearList());
+    registerNamesOfPlayers();
     router.push(distributionOfRolesAddress);
   }
   return (
