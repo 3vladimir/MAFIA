@@ -3,3 +3,4 @@ export { default as ContainerOfHeaderAndMain } from "./Container-of-Header-and-M
 export { DialogForInvalidNumberOfPlayers } from "./Dialoges/Dialoges";
 export { default as FormForNameOfPlayers } from "./Form-for-names-of-players/FormForNameOfPlayers";
 export { default as FormForNumberOfPlayers } from "./Form-for-number-of-players/FormForNumberOfPlayers";
+export { default as PlayerBox } from "./Player-box/PlayerBox";

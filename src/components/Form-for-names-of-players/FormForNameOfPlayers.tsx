@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../../redux/store/store";
 import { addPlayer, clearList } from "../../redux/reducers/playersReducer";
 import { distributionOfRolesAddress } from "../../routes";
-import { randomNames } from "../../lib/randomNames";
-import { UNKNOWN, ALIVE } from "../../lib/playersInfoValuesConstants";
+import produceRandomNames from "../../lib/randomNames";
+import { UNKNOWN, status } from "../../lib/playersInfoValuesConstants";
 
 type Props = {
   listOfPlayers: string[];
@@ -31,7 +31,7 @@ export default function Form({
           name: element,
           side: UNKNOWN,
           role: UNKNOWN,
-          status: ALIVE,
+          status: status.ALIVE,
         })
       );
     });
@@ -39,15 +39,11 @@ export default function Form({
 
   function handleClickRandomNames(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
-    const newListOfPlayers = [...listOfPlayers];
-    const newRandomNames = [...randomNames];
-    for (let i = 0; i < numberOfPlayers; i++) {
-      const randomNumber =
-        Math.floor(Math.random() * newRandomNames.length - 1) + 1;
-      newListOfPlayers[i] = newRandomNames[randomNumber];
-      newRandomNames.splice(randomNumber, 1);
-    }
-    setListOfPlayers(newListOfPlayers);
+    produceRandomNames({
+      listOfPlayers,
+      setListOfPlayers,
+      numberOfPlayers,
+    });
   }
 
   React.useEffect(() => {
@@ -58,6 +54,7 @@ export default function Form({
     event.preventDefault();
     dispatch(clearList());
     registerNamesOfPlayers();
+    localStorage.setItem('isGameStarted','yes')
     router.push(distributionOfRolesAddress);
   }
   return (

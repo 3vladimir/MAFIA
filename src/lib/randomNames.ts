@@ -1,4 +1,4 @@
-export const randomNames = [
+const randomNames = [
   "نیلوفر",
   "نگار",
   "بیتا",
@@ -10,8 +10,32 @@ export const randomNames = [
   "علی",
   "کاوه",
   "کورش",
-  "متین",
+  "متین", 
   "سجاد",
   "امین",
-  "احسان"
+  "احسان",
 ];
+
+type Props = {
+  listOfPlayers: string[];
+  numberOfPlayers: number;
+  setListOfPlayers: React.Dispatch<React.SetStateAction<string[]>>;
+};
+
+function produceRandomNames({
+  listOfPlayers,
+  setListOfPlayers,
+  numberOfPlayers,
+}: Props) {
+  const newListOfPlayers = [...listOfPlayers];
+  const newRandomNames = [...randomNames];
+  for (let i = 0; i < numberOfPlayers; i++) {
+    const randomNumber =
+      Math.floor(Math.random() * (newRandomNames.length - 1)) + 1;
+    newListOfPlayers[i] = newRandomNames[randomNumber];
+    newRandomNames.splice(randomNumber, 1);
+  }
+  setListOfPlayers(newListOfPlayers);
+}
+
+export default produceRandomNames

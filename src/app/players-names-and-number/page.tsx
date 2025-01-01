@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import * as React from "react";
-import { Provider } from "react-redux";
-import { store } from "../../redux/store/store";
 import {
   ContainerOfHeaderAndMain,
   FormForNameOfPlayers,
@@ -45,9 +43,7 @@ function Main() {
 export default function App() {
   return (
     <>
-      <Provider store={store}>
-        <ContainerOfHeaderAndMain Main={<Main />} />
-      </Provider>
+      <ContainerOfHeaderAndMain Main={<Main />} />
     </>
   );
 }

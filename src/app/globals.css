@@ -21,6 +21,10 @@
   src: url(../../public/fonts/Darkcastle_PERSONAL_USE_ONLY.otf);
 }
 
+.iranSansFont{
+  font-family: IransnasMedium;
+}
+
 .gotichFont{
   font-family: gothic;
 }

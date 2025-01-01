@@ -7,6 +7,7 @@ import { ContainerOfHeaderAndMain } from "../components";
 import { playersNamesAndNumberPageAddress } from "../routes";
 
 function Main() {
+  localStorage.setItem('isGameStarted','no')
   return (
     <>
       <div
