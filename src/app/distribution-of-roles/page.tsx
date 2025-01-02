@@ -2,19 +2,19 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import * as React from "react";
-import {  useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../../redux/store/store";
 import {
   indicateRole,
   indicateSide,
 } from "../../redux/reducers/playersReducer";
-import { ContainerOfHeaderAndMain, PlayerBox } from "../../components";
+import {
+  ContainerOfHeaderAndMain,
+  PlayerBox,
+  DialogEnterFirstDay,
+} from "../../components";
 import { rolesListByOrder } from "../../lib/rolesListByOrder";
 import { role, side } from "../../lib/playersInfoValuesConstants";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import { dayAddress } from "../../routes";
 
 function Main() {
   const dispatch = useDispatch<AppDispatch>();
@@ -25,7 +25,7 @@ function Main() {
     rolesForCurrentGame[index] = rolesListByOrder[index];
   });
   const [areRolesDistribute, setAreRolesDistribute] = React.useState(false);
-  const [open, setOpen] = React.useState(false);
+  const [openDialog, setOpenDialog] = React.useState(false);
 
   function distributeTheRoles() {
     if (!areRolesDistribute) {
@@ -52,46 +52,15 @@ function Main() {
     localStorage.setItem("playersInfo", JSON.stringify(playersInfo));
   }, [playersInfo]);
 
-  function handleClickOpen() {
-    setOpen(true);
+  function handleClickOpenDialog() {
+    setOpenDialog(true);
   }
-  function handleClickClose() {
-    setOpen(false);
+  function handleClickCloseDialog() {
+    setOpenDialog(false);
   }
 
-  const router = useRouter();
-  function handleClickConfirm() {
-    router.push(`${dayAddress}/1`);
-  }
   return (
     <>
-      <Dialog open={open}>
-        <div
-          aria-label="dialog-inner-container"
-          className="rounded-xl iranSansFont py-5"
-        >
-          <p className="px-20 mb-10">وارد روز اول بازی میشوید؟</p>
-          <DialogActions>
-            <div
-              aria-label="buttons-container"
-              className="w-full flex justify-between"
-            >
-              <button
-                className="basis-1/4 text-center hover:text-sky-700"
-                onClick={handleClickConfirm}
-              >
-                تایید
-              </button>
-              <button
-                className="basis-1/4 text-center hover:text-sky-700"
-                onClick={handleClickClose}
-              >
-                بازگشت
-              </button>
-            </div>
-          </DialogActions>
-        </div>
-      </Dialog>
       <div aria-label="whole-container" className="my-10">
         <main>
           <div
@@ -127,7 +96,7 @@ function Main() {
               className="text-center mt-10"
             >
               <button
-                onClick={handleClickOpen}
+                onClick={handleClickOpenDialog}
                 className="px-16 py-6 bg-green-700 rounded-lg shadow-md text-gray-200
                 hover:scale-110 transition duration-300"
               >
@@ -137,6 +106,10 @@ function Main() {
           )}
         </main>
       </div>
+      <DialogEnterFirstDay
+        openDialog={openDialog}
+        handleClickCloseDialog={handleClickCloseDialog}
+      />
     </>
   );
 }

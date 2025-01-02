@@ -7,7 +7,7 @@ import { ContainerOfHeaderAndMain } from "../components";
 import { playersNamesAndNumberPageAddress } from "../routes";
 
 function Main() {
-  localStorage.setItem('isGameStarted','no')
+  
   return (
     <>
       <div
@@ -17,7 +17,7 @@ function Main() {
         <div aria-label="container-of-link" className="pt-32">
           <Link href={playersNamesAndNumberPageAddress}>
             <div
-              className="text-white bg-blackAndRedGradient table mx-auto p-10 
+              className="text-white bg-blackAndRedLinearGradient table mx-auto p-10 
             rounded-xl text-4xl hover:scale-110 transition duration-300"
             >
               شروع یک بازی

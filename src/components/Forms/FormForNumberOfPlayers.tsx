@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 
-import { DialogForInvalidNumberOfPlayers } from "../../components";
+import { AlertForInvalidNumberOfPlayers } from "../../components";
 
 type Props = {
   setIsNumberOfPlayersInvalid: React.Dispatch<React.SetStateAction<boolean>>;
@@ -68,7 +68,7 @@ export default function Form({
               onChange={handleInputChangeNumberOfPlayers}
               className="focus:outline-none focus:border-red-900 rounded shadow-md p-3 border-2"
             />
-            <DialogForInvalidNumberOfPlayers
+            <AlertForInvalidNumberOfPlayers
               isNumberOfPlayersInvalid={isNumberOfPlayersInvalid}
             />
           </div>

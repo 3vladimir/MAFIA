@@ -55,7 +55,7 @@ export default function Form({
     dispatch(clearList());
     registerNamesOfPlayers();
     localStorage.setItem('isGameStarted','yes')
-    router.push(distributionOfRolesAddress);
+    router.replace(distributionOfRolesAddress);
   }
   return (
     <>

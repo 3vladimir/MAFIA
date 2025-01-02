@@ -35,6 +35,17 @@ const playersReducer = createSlice({
       });
     },
 
+    removePlayer: (
+      state,
+      action: PayloadAction<{
+        name: string;
+      }>
+    ) => {
+      state.value = state.value.filter((player) => {
+        return player.name !== action.payload.name;
+      });
+    },
+
     clearList: (state) => {
       state.value = [];
     },
@@ -74,6 +85,7 @@ const playersReducer = createSlice({
     },
   },
 });
-export const { addPlayer, clearList, indicateRole,indicateSide } = playersReducer.actions;
+export const { addPlayer, clearList, indicateRole, indicateSide,removePlayer } =
+  playersReducer.actions;
 
 export default playersReducer.reducer;

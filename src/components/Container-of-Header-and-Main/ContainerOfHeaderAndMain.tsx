@@ -5,15 +5,20 @@ import { Header } from "../../components";
 
 type Props = {
   Main: JSX.Element;
+  backgroundColor?: string;
 };
 
-export default function Container({ Main }: Props) {
+export default function Container({
+  Main,
+  backgroundColor = "bg-[snow]",
+}: Props) {
+  const classess = `grow ${backgroundColor}`;
   return (
     <>
       <Provider store={store}>
         <div className="absolute inset-0 flex flex-col">
           <Header />
-          <div className="grow bg-[snow]">{Main}</div>
+          <div className={classess}>{Main}</div>
         </div>
       </Provider>
     </>
