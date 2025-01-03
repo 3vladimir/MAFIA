@@ -2,7 +2,7 @@
 "use client";
 import * as React from "react";
 import { Player } from "../../types";
-import { side } from "../../lib/playersInfoValuesConstants";
+import { side } from "../../lib/constantsValues";
 
 type Props = {
   item: Player;

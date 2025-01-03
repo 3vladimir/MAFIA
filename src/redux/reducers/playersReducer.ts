@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Player } from "../../types";
-import { role } from "@/lib/playersInfoValuesConstants";
 
 type Props = {
   value: Player[];
@@ -24,14 +23,12 @@ const playersReducer = createSlice({
         name: string;
         side: string;
         role: string;
-        status: string;
       }>
     ) => {
       state.value.push({
         name: action.payload.name,
         side: action.payload.side,
         role: action.payload.role,
-        status: action.payload.status,
       });
     },
 
@@ -85,7 +82,12 @@ const playersReducer = createSlice({
     },
   },
 });
-export const { addPlayer, clearList, indicateRole, indicateSide,removePlayer } =
-  playersReducer.actions;
+export const {
+  addPlayer,
+  clearList,
+  indicateRole,
+  indicateSide,
+  removePlayer,
+} = playersReducer.actions;
 
 export default playersReducer.reducer;

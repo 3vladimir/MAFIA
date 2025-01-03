@@ -7,7 +7,12 @@ import { RootState, AppDispatch } from "../../redux/store/store";
 import { addPlayer, clearList } from "../../redux/reducers/playersReducer";
 import { distributionOfRolesAddress } from "../../routes";
 import produceRandomNames from "../../lib/randomNames";
-import { UNKNOWN, status } from "../../lib/playersInfoValuesConstants";
+import {
+  UNKNOWN,
+  gameModes,
+  localStorageNames,
+  dieHardAllStatuses,
+} from "../../lib/constantsValues";
 
 type Props = {
   listOfPlayers: string[];
@@ -31,7 +36,6 @@ export default function Form({
           name: element,
           side: UNKNOWN,
           role: UNKNOWN,
-          status: status.ALIVE,
         })
       );
     });
@@ -47,14 +51,27 @@ export default function Form({
   }
 
   React.useEffect(() => {
-    localStorage.setItem("playersInfo", JSON.stringify(playersInfo));
+    localStorage.setItem(
+      localStorageNames.playersInfo,
+      JSON.stringify(playersInfo)
+    );
   }, [playersInfo]);
+
+  function initiateLocalStorage() {
+    localStorage.setItem(localStorageNames.isGameStarted, "yes");
+    localStorage.setItem(localStorageNames.gameMode, gameModes.NORMAL);
+    localStorage.setItem(localStorageNames.sniperShots, "0");
+    localStorage.setItem(
+      localStorageNames.dieHardStatus,
+      dieHardAllStatuses.withShield
+    );
+  }
 
   function handleSubmitNamesOfPlayers(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    initiateLocalStorage();
     dispatch(clearList());
     registerNamesOfPlayers();
-    localStorage.setItem('isGameStarted','yes')
     router.replace(distributionOfRolesAddress);
   }
   return (

@@ -56,12 +56,13 @@ export default function Form({
       <form onSubmit={handleSubmitNumberOfPlayers}>
         <div aria-label="form-holder" className="text-center">
           <div className="mb-5">
-            <label htmlFor="">تعداد نفرات بازی را مشخص کنید</label>
+            <label htmlFor="numberOfPlayers">تعداد نفرات بازی را مشخص کنید</label>
           </div>
           <div className="mb-5">
             <input
               aria-label="number-of-players"
               ref={numberOfPlayersInputRef}
+              id="numberOfPlayers"
               dir="ltr"
               type="text"
               placeholder="0"

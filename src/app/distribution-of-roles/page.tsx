@@ -14,7 +14,7 @@ import {
   DialogEnterFirstDay,
 } from "../../components";
 import { rolesListByOrder } from "../../lib/rolesListByOrder";
-import { role, side } from "../../lib/playersInfoValuesConstants";
+import { role, side, localStorageNames } from "../../lib/constantsValues";
 
 function Main() {
   const dispatch = useDispatch<AppDispatch>();
@@ -49,7 +49,10 @@ function Main() {
   }
 
   React.useEffect(() => {
-    localStorage.setItem("playersInfo", JSON.stringify(playersInfo));
+    localStorage.setItem(
+      localStorageNames.playersInfo,
+      JSON.stringify(playersInfo)
+    );
   }, [playersInfo]);
 
   function handleClickOpenDialog() {

@@ -10,12 +10,13 @@ import { RootState, AppDispatch } from "../../redux/store/store";
 import { removePlayer } from "../../redux/reducers/playersReducer";
 import { usePathname } from "next/navigation";
 import { Player } from "../../types";
+import { localStorageNames } from "../../lib/constantsValues";
 
 type PropsOfStateAndCloseFunction = {
   openDialog: boolean;
   handleClickCloseDialog: () => void;
 };
-type ProPsForDialogPlayerOut = {
+type PropsForDialogPlayerOut = {
   openDialog: boolean;
   handleClickCloseDialog: () => void;
   playerOut: string;
@@ -25,6 +26,11 @@ type PropsForDialogSeeRoles = {
   openDialog: boolean;
   setoOpenDialog: React.Dispatch<React.SetStateAction<boolean>>;
   item: Player;
+};
+
+type PropsForDialogNightKeels = {
+  openDialog: boolean;
+  setOpenDialog: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export function DialogEnterFirstDay({
@@ -76,7 +82,7 @@ export function DialogExitGame({
   const router = useRouter();
 
   function handleClickConfirmDialog() {
-    localStorage.setItem("isGameStarted", "no");
+    localStorage.setItem(localStorageNames.isGameStarted, "no");
     router.push(homePageAddress);
   }
   return (
@@ -118,11 +124,12 @@ export function DialogPlayerOut({
   openDialog,
   handleClickCloseDialog,
   playerOut,
-}: ProPsForDialogPlayerOut) {
+}: PropsForDialogPlayerOut) {
   const path = usePathname();
-  const round = path.slice(5);
+  const round = parseInt(path.slice(5));
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
+
   function handleClickConfirmDialog() {
     dispatch(removePlayer({ name: playerOut }));
     router.replace(`${nightAddress}/${round}`);
@@ -199,6 +206,63 @@ export function DialogSeeRoles({
               className="bg-red-500 text-white p-2 mx-auto rounded"
             >
               متوجه شدم
+            </button>
+          </DialogActions>
+        </div>
+      </Dialog>
+    </>
+  );
+}
+
+export function DialogNightKeels({
+  openDialog,
+  setOpenDialog,
+}: PropsForDialogNightKeels) {
+  const path = usePathname();
+  const round = parseInt(path.slice(7));
+  const router = useRouter();
+
+  const unParsedNightKills =
+    localStorage.getItem(localStorageNames.nightKills) || "";
+  const nightKills = JSON.parse(unParsedNightKills);
+  if (!nightKills[0]) {
+    // the array is like [null] and the null should be deleted
+    nightKills.pop();
+  }
+
+  function handleClickCloseDialog() {
+    setOpenDialog(false);
+    router.replace(`${dayAddress}/${round + 1}`);
+  }
+
+  return (
+    <>
+      <Dialog open={openDialog}>
+        <div
+          aria-label="dialog-inner-container"
+          className="px-20 py-14 rounded-xl"
+        >
+          <div className="mb-10">
+            در شب گذشته{" "}
+            {[...nightKills].map((item, index) => (
+              <span key={index}>
+                {`${item} `}
+                {nightKills.length > index + 1 && "و "}
+              </span>
+            ))}
+            {nightKills.length == 0
+              ? "کسی کشته نشد"
+              : nightKills.length == 1
+              ? "کشته شد"
+              : "کشته شدند"}
+          </div>
+
+          <DialogActions>
+            <button
+              onClick={handleClickCloseDialog}
+              className="bg-red-500 text-white p-2 mx-auto rounded"
+            >
+              شروع روز بعدی
             </button>
           </DialogActions>
         </div>

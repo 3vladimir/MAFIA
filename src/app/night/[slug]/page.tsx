@@ -1,5 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
-import { ContainerOfHeaderAndMain } from "../../../components";
+import * as React from "react";
+import {
+  ContainerOfHeaderAndMain,
+  FormForDetectiveInquiry,
+  FormForNightActions,
+} from "../../../components";
 import { usePathname } from "next/navigation";
 import { daysToPersian } from "../../../lib/daysToPersian";
 
@@ -9,10 +15,18 @@ function Main() {
 
   return (
     <>
-      <div aria-label="whole-container" className="mt-10 w-11/12 mx-auto">
-        <h1 className="text-center mb-10 font-extrabold text-xl text-white">
+      <div aria-label="whole-container" className="mt-10">
+        <h1
+          className="table mx-auto rounded mb-10 font-extrabold text-xl text-white
+        bg-blackAndYellowLinearGradient px-8 py-3"
+        >
           {`شب ${daysToPersian({ round: round })}`}
         </h1>
+
+        <div aria-label="forms-container" className="text-center">
+          <FormForDetectiveInquiry />
+          <FormForNightActions />
+        </div>
       </div>
     </>
   );

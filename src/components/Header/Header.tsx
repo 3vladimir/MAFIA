@@ -3,9 +3,11 @@
 import * as React from "react";
 import { ImExit } from "react-icons/im";
 import { DialogExitGame } from "../../components";
+import { localStorageNames } from "../../lib/constantsValues";
 
 export default function Header() {
-  const gameMode = localStorage.getItem("isGameStarted") === "yes";
+  const isGameStarted =
+    localStorage.getItem(localStorageNames.isGameStarted) === "yes";
   const [openDialog, setOpenDialog] = React.useState(false);
 
   function handleClickOpenDialog() {
@@ -24,7 +26,7 @@ export default function Header() {
             M A F I A
           </div>
           <div>
-            {gameMode && (
+            {isGameStarted && (
               <button onClick={handleClickOpenDialog}>
                 <div className="flex items-center hover:text-stone-800">
                   خروج

@@ -7,7 +7,6 @@ import { ContainerOfHeaderAndMain } from "../components";
 import { playersNamesAndNumberPageAddress } from "../routes";
 
 function Main() {
-  
   return (
     <>
       <div

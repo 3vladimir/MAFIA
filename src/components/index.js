@@ -4,6 +4,8 @@ export { AlertForInvalidNumberOfPlayers } from "./Alerts/Alerts";
 export { default as FormForNameOfPlayers } from "./Forms/FormForNameOfPlayers";
 export { default as FormForNumberOfPlayers } from "./Forms/FormForNumberOfPlayers";
 export { default as FormForPlayerOut } from "./Forms/FormForPlayerOut";
+export { default as FormForDetectiveInquiry } from "./Forms/FormForDetectiveInquiry";
+export { default as FormForNightActions } from "./Forms/FormForNightActions";
 export { default as PlayerBox } from "./Player-box/PlayerBox";
 export { default as PlayerLabel } from "./PlayerLabel/PlayerLabel";
 export {
@@ -11,4 +13,5 @@ export {
   DialogExitGame,
   DialogPlayerOut,
   DialogSeeRoles,
+  DialogNightKeels,
 } from "./Dialoges/Dialoges";
