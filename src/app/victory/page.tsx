@@ -3,7 +3,10 @@ import { localStorageNames, gameModes } from "../../lib/constantsValues";
 import { ContainerOfHeaderAndMain, Title } from "../../components";
 
 function Main() {
-  const gameResult = localStorage.getItem(localStorageNames.gameMode);
+  const gameResult =
+    typeof window !== "undefined"
+      ? localStorage.getItem(localStorageNames.gameMode)
+      : "defaultValue";
 
   return (
     <>

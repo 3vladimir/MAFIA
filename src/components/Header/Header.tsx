@@ -7,7 +7,10 @@ import { localStorageNames } from "../../lib/constantsValues";
 
 export default function Header() {
   const isGameStarted =
-    localStorage.getItem(localStorageNames.isGameStarted) === "yes";
+    typeof window !== "undefined"
+      ? localStorage.getItem(localStorageNames.isGameStarted) === "yes"
+      : "defaultValue";
+
   const [openDialog, setOpenDialog] = React.useState(false);
 
   function handleClickOpenDialog() {

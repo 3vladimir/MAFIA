@@ -58,13 +58,15 @@ export default function Form({
   }, [playersInfo]);
 
   function initiateLocalStorage() {
-    localStorage.setItem(localStorageNames.isGameStarted, "yes");
-    localStorage.setItem(localStorageNames.gameMode, gameModes.NORMAL);
-    localStorage.setItem(localStorageNames.sniperShots, "0");
-    localStorage.setItem(
-      localStorageNames.dieHardStatus,
-      dieHardAllStatuses.withShield
-    );
+    if (typeof window !== "undefined") {
+      localStorage.setItem(localStorageNames.isGameStarted, "yes");
+      localStorage.setItem(localStorageNames.gameMode, gameModes.NORMAL);
+      localStorage.setItem(localStorageNames.sniperShots, "0");
+      localStorage.setItem(
+        localStorageNames.dieHardStatus,
+        dieHardAllStatuses.withShield
+      );
+    }
   }
 
   function handleSubmitNamesOfPlayers(event: React.FormEvent<HTMLFormElement>) {

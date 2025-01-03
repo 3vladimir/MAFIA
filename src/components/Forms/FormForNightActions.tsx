@@ -39,9 +39,15 @@ export default function Form() {
     citizenNames[index] = item.name;
   });
   const unParsedSniperShotsNumber =
-    localStorage.getItem(localStorageNames.sniperShots) || "";
+    typeof window !== "undefined"
+      ? localStorage.getItem(localStorageNames.sniperShots) || ""
+      : "";
+
   let sniperShotsNumber = parseInt(unParsedSniperShotsNumber);
-  const dieHardStatus = localStorage.getItem(localStorageNames.dieHardStatus);
+  const dieHardStatus =
+    typeof window !== "undefined"
+      ? localStorage.getItem(localStorageNames.dieHardStatus)
+      : "defaultValue";
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -53,20 +59,24 @@ export default function Form() {
 
     if (sniperShot !== "هیچکس") {
       sniperShotsNumber++;
-      localStorage.setItem(
-        localStorageNames.sniperShots,
-        sniperShotsNumber.toString()
-      );
+      if (typeof window !== "undefined") {
+        localStorage.setItem(
+          localStorageNames.sniperShots,
+          sniperShotsNumber.toString()
+        );
+      }
     }
 
     if (mafiaShot == docrotSave) {
       console.log("دکتر یکی رو سیو کرد");
     } else if (mafiaShot == dieHard?.name) {
       if (dieHardStatus == dieHardAllStatuses.withShield) {
-        localStorage.setItem(
-          localStorageNames.dieHardStatus,
-          dieHardAllStatuses.shieldLess
-        );
+        if (typeof window !== "undefined") {
+          localStorage.setItem(
+            localStorageNames.dieHardStatus,
+            dieHardAllStatuses.shieldLess
+          );
+        }
       } else {
         dispatch(removePlayer({ name: mafiaShot || "" }));
         nightKills.push(mafiaShot);
@@ -85,11 +95,12 @@ export default function Form() {
       dispatch(removePlayer({ name: sniperShot || "" }));
       nightKills.push(sniperShot);
     }
-
-    localStorage.setItem(
-      localStorageNames.nightKills,
-      JSON.stringify(nightKills)
-    );
+    if (typeof window !== "undefined") {
+      localStorage.setItem(
+        localStorageNames.nightKills,
+        JSON.stringify(nightKills)
+      );
+    }
     handleClickOpenDialog();
   }
   return (

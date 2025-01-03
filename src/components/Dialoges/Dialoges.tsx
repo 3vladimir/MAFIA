@@ -82,7 +82,10 @@ export function DialogExitGame({
   const router = useRouter();
 
   function handleClickConfirmDialog() {
-    localStorage.setItem(localStorageNames.isGameStarted, "no");
+    if (typeof window !== "undefined") {
+      localStorage.setItem(localStorageNames.isGameStarted, "no");
+    }
+
     router.push(homePageAddress);
   }
   return (
@@ -223,7 +226,10 @@ export function DialogNightKeels({
   const router = useRouter();
 
   const unParsedNightKills =
-    localStorage.getItem(localStorageNames.nightKills) || "";
+    typeof window !== "undefined"
+      ? localStorage.getItem(localStorageNames.nightKills) || ""
+      : "defaultValue";
+
   const nightKills = JSON.parse(unParsedNightKills);
   if (!nightKills[0]) {
     // the array is like [null] and the null should be deleted
