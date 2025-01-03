@@ -6,6 +6,7 @@ import {
   PlayerLabel,
   DialogPlayerOut,
   FormForPlayerOut,
+  Title,
 } from "../../../components";
 import { usePathname, useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
@@ -96,6 +97,7 @@ function Main() {
 function App() {
   return (
     <>
+      <Title>روز بازی</Title>
       <ContainerOfHeaderAndMain
         Main={<Main />}
         backgroundColor="bg-yellow-50"

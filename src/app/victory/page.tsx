@@ -1,6 +1,6 @@
 "use client";
 import { localStorageNames, gameModes } from "../../lib/constantsValues";
-import { ContainerOfHeaderAndMain } from "../../components";
+import { ContainerOfHeaderAndMain, Title } from "../../components";
 
 function Main() {
   const gameResult = localStorage.getItem(localStorageNames.gameMode);
@@ -19,6 +19,7 @@ function Main() {
 function App() {
   return (
     <>
+      <Title>پایان بازی</Title>
       <ContainerOfHeaderAndMain Main={<Main />} backgroundColor="bg-red-500" />
     </>
   );

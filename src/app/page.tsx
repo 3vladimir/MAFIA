@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Provider } from "react-redux";
 import { store } from "../redux/store/store";
-import { ContainerOfHeaderAndMain } from "../components";
+import { ContainerOfHeaderAndMain, Title } from "../components";
 import { playersNamesAndNumberPageAddress } from "../routes";
 
 function Main() {
@@ -31,6 +31,7 @@ function Main() {
 export default function App() {
   return (
     <>
+      <Title>صفحه اصلی</Title>
       <Provider store={store}>
         <ContainerOfHeaderAndMain Main={<Main />} />
       </Provider>

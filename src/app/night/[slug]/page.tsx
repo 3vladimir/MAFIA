@@ -5,6 +5,7 @@ import {
   ContainerOfHeaderAndMain,
   FormForDetectiveInquiry,
   FormForNightActions,
+  Title,
 } from "../../../components";
 import { usePathname } from "next/navigation";
 import { daysToPersian } from "../../../lib/daysToPersian";
@@ -34,6 +35,7 @@ function Main() {
 function App() {
   return (
     <>
+      <Title>شب بازی</Title>
       <ContainerOfHeaderAndMain Main={<Main />} backgroundColor="bg-sky-950" />
     </>
   );

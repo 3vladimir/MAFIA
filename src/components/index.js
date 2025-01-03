@@ -8,6 +8,7 @@ export { default as FormForDetectiveInquiry } from "./Forms/FormForDetectiveInqu
 export { default as FormForNightActions } from "./Forms/FormForNightActions";
 export { default as PlayerBox } from "./Player-box/PlayerBox";
 export { default as PlayerLabel } from "./PlayerLabel/PlayerLabel";
+export { default as Title } from "./Title/Title";
 export {
   DialogEnterFirstDay,
   DialogExitGame,

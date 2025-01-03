@@ -5,6 +5,7 @@ import {
   ContainerOfHeaderAndMain,
   FormForNameOfPlayers,
   FormForNumberOfPlayers,
+  Title,
 } from "../../components";
 
 function Main() {
@@ -43,6 +44,7 @@ function Main() {
 export default function App() {
   return (
     <>
+      <Title>تعیین کردن تعداد و نام بازیکنان</Title>
       <ContainerOfHeaderAndMain Main={<Main />} />
     </>
   );

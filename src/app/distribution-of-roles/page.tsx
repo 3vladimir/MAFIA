@@ -12,6 +12,7 @@ import {
   ContainerOfHeaderAndMain,
   PlayerBox,
   DialogEnterFirstDay,
+  Title,
 } from "../../components";
 import { rolesListByOrder } from "../../lib/rolesListByOrder";
 import { role, side, localStorageNames } from "../../lib/constantsValues";
@@ -120,6 +121,7 @@ function Main() {
 export default function App() {
   return (
     <>
+      <Title>پخش کردن نقش ها</Title>
       <ContainerOfHeaderAndMain Main={<Main />} />
     </>
   );
