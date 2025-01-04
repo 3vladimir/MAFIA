@@ -83,8 +83,8 @@ export default function Form({
         <form onSubmit={handleSubmitNamesOfPlayers}>
           <div
             className="
-          lg:text-base
-          text-sm mb-2"
+            lg:text-base
+            text-sm mb-2"
           >
             نام بازیکنان را وارد کنید{" "}
             <button
@@ -103,16 +103,16 @@ export default function Form({
                 <li
                   key={index}
                   className="
-              lg:mb-1 
-              mb-2 "
+                  lg:mb-1 
+                  mb-2 "
                 >
                   <input
                     required
                     defaultValue={item}
                     type="text"
                     className="focus:outline-none text-center shadow
-                  lg:border-2 lg:p-3 lg:text-base
-                  border-1 p-2 text-sm"
+                    lg:border-2 lg:p-3 lg:text-base
+                    border-1 p-2 text-sm"
                   />
                 </li>
               )),

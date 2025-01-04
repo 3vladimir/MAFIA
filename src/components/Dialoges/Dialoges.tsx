@@ -12,10 +12,16 @@ import { usePathname } from "next/navigation";
 import { Player } from "../../types";
 import { localStorageNames } from "../../lib/constantsValues";
 
-type PropsOfStateAndCloseFunction = {
+type PropsForDialogEnterFirstDay = {
   openDialog: boolean;
   handleClickCloseDialog: () => void;
 };
+
+type PropsForDialogExitGame = {
+  openDialog: boolean;
+  handleClickCloseDialog: () => void;
+};
+
 type PropsForDialogPlayerOut = {
   openDialog: boolean;
   handleClickCloseDialog: () => void;
@@ -36,7 +42,7 @@ type PropsForDialogNightKeels = {
 export function DialogEnterFirstDay({
   openDialog,
   handleClickCloseDialog,
-}: PropsOfStateAndCloseFunction) {
+}: PropsForDialogEnterFirstDay) {
   const router = useRouter();
 
   function handleClickConfirm() {
@@ -48,14 +54,14 @@ export function DialogEnterFirstDay({
         <div
           aria-label="dialog-inner-container"
           className="
-         lg:py-8 lg:rounded-xl
-         py-5 rounded-lg"
+          lg:py-8 lg:rounded-xl
+          py-5 rounded-lg"
         >
           <p
             className="
-          lg:px-20 
-          sm:px-14 sm:text-base
-          px-10 mb-10 text-sm"
+            lg:px-20 
+            sm:px-14 sm:text-base
+            px-10 mb-10 text-sm"
           >
             وارد روز اول بازی میشوید؟
           </p>
@@ -92,7 +98,7 @@ export function DialogEnterFirstDay({
 export function DialogExitGame({
   openDialog,
   handleClickCloseDialog,
-}: PropsOfStateAndCloseFunction) {
+}: PropsForDialogExitGame) {
   const router = useRouter();
 
   function handleClickConfirmDialog() {
@@ -107,16 +113,15 @@ export function DialogExitGame({
       <Dialog open={openDialog}>
         <div
           aria-label="dialog-inner-container"
-          // className="rounded-xl iranSansFont py-5"
           className="
           lg:py-8 lg:rounded-xl
           py-5 rounded-lg"
         >
           <p
             className="
-          lg:px-10 
-          sm:px-7 sm:text-base
-          px-5 mb-10 text-sm"
+            lg:px-10 
+            sm:px-7 sm:text-base
+            px-5 mb-10 text-sm"
           >
             آیا مطمئن هستید میخواهید از بازی خارج شوید؟
           </p>
@@ -175,9 +180,9 @@ export function DialogPlayerOut({
         >
           <p
             className="
-          lg:px-20 
-          sm:px-16 sm:text-base
-          px-12 mb-10 text-sm"
+            lg:px-20 
+            sm:px-16 sm:text-base
+            px-12 mb-10 text-sm"
           >
             {playerOut == "هیچکس"
               ? "هیچکس از بازی خارج نشد؟"
@@ -190,16 +195,16 @@ export function DialogPlayerOut({
             >
               <button
                 className="basis-1/4 text-center hover:text-sky-700
-              sm:text-base
-              text-sm"
+                sm:text-base
+                text-sm"
                 onClick={handleClickConfirmDialog}
               >
                 تایید
               </button>
               <button
                 className="basis-1/4 text-center hover:text-sky-700
-               sm:text-base
-               text-sm"
+                sm:text-base
+                text-sm"
                 onClick={handleClickCloseDialog}
               >
                 بازگشت
@@ -238,9 +243,9 @@ export function DialogSeeRoles({
           {isRoleSeen ? (
             <div
               className="
-            lg:mb-10
-            sm:mb-6
-            mb-5"
+              lg:mb-10
+              sm:mb-6
+              mb-5"
             >
               {item.name} قبلا نقش خود را دیده است
             </div>
@@ -248,17 +253,17 @@ export function DialogSeeRoles({
             <div className="text-center">
               <p
                 className=" 
-              lg:mb-10 lg:text-base
-              sm:mb-6 
-              mb-5 text-sm"
+                lg:mb-10 lg:text-base
+                sm:mb-6 
+                mb-5 text-sm"
               >
                 {item.name}
               </p>
               <p
                 className=" 
-              lg:mb-10 lg:text-2xl
-              sm:mb-6 sm:text-xl
-              mb-5 text-lg"
+                lg:mb-10 lg:text-2xl
+                sm:mb-6 sm:text-xl
+                mb-5 text-lg"
               >
                 {item.role}
               </p>
@@ -317,15 +322,15 @@ export function DialogNightKeels({
         <div
           aria-label="dialog-inner-container"
           className="
-           lg:px-16 lg:py-10 lg:rounded-xl
+          lg:px-16 lg:py-10 lg:rounded-xl
           sm:px-12 sm:py-8
           px-8 py-6 rounded-lg"
         >
           <div
             className=" 
-           lg:mb-10 lg:text-base
-           sm:mb-6 
-           mb-5 text-sm"
+            lg:mb-10 lg:text-base
+            sm:mb-6 
+            mb-5 text-sm"
           >
             در شب گذشته{" "}
             {[...nightKills].map((item, index) => (

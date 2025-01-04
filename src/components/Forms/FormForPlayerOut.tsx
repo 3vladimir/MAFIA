@@ -26,8 +26,8 @@ function Form({ setOpenDialog, setPlayerOut, playersInfo }: Props) {
           <label
             htmlFor="outPlayerSelect"
             className="
-          lg:text-base
-          text-sm"
+            lg:text-base
+            text-sm"
           >
             بازیکن خروجی را مشخص کنید
           </label>

@@ -8,9 +8,7 @@ type Props = {
 };
 
 const playersStoredInfo =
-  typeof window !== "undefined"
-    ? localStorage.getItem("playersInfo")
-    : null;
+  typeof window !== "undefined" ? localStorage.getItem("playersInfo") : null;
 
 const playersInfo = playersStoredInfo ? JSON.parse(playersStoredInfo) : [];
 
@@ -87,6 +85,7 @@ const playersReducer = createSlice({
     },
   },
 });
+
 export const {
   addPlayer,
   clearList,

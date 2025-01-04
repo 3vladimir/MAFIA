@@ -60,8 +60,8 @@ function Main() {
       <div
         aria-label="whole-container"
         className="w-11/12 mx-auto
-      lg:mt-10
-      mt-14"
+         lg:mt-10
+         mt-14"
       >
         <h1
           className="table mx-auto mb-10 rounded font-extrabold bg-whiteAndYellowLinearGradient

@@ -34,10 +34,12 @@ export default function Form() {
   const citizens = playersInfo.filter((item) => {
     return item.side == side.CITIZEN;
   });
+
   const citizenNames = new Array(citizens.length);
   citizens.forEach((item, index) => {
     citizenNames[index] = item.name;
   });
+
   const unParsedSniperShotsNumber =
     typeof window !== "undefined"
       ? localStorage.getItem(localStorageNames.sniperShots) || ""
@@ -95,7 +97,7 @@ export default function Form() {
       dispatch(removePlayer({ name: sniperShot || "" }));
       nightKills.push(sniperShot);
     }
-    
+
     nightKills.forEach((element, index) => {
       if (element == nightKills[index + 1]) {
         nightKills.pop();
@@ -110,40 +112,41 @@ export default function Form() {
     }
     handleClickOpenDialog();
   }
+
   return (
     <>
       <form aria-label="night-actions" onSubmit={handleSubmit}>
         <div
           aria-label="doctor-save"
           className="
-        sm:mb-8
-        mb-6
-        "
+          sm:mb-8
+          mb-6
+          "
         >
           <p
             className="
-          text-gray-100
-          lg:mb-2 lg:text-base
-          mb-1 text-sm
-          "
+            text-gray-100
+            lg:mb-2 lg:text-base
+            mb-1 text-sm
+            "
           >
             سپس دکتر را بیدار کنید
           </p>
-          <div className="mb-3" aria-label="container-for-label">
+          <div aria-label="container-for-label" className="mb-3">
             <label
               htmlFor="docrotSave"
               className="
-            text-gray-100
-          lg:text-base
-          text-sm
-            "
+              text-gray-100
+              lg:text-base
+              text-sm
+              "
             >
               فردی که دکتر نجات میدهد را مشخص کنید
             </label>
             <p
               className="text-gray-300 mt-1
-            lg:text-base
-            text-sm"
+              lg:text-base
+              text-sm"
             >
               (دکتر خودش را فقط یکبار میتواند نجات دهد)
             </p>
@@ -152,10 +155,10 @@ export default function Form() {
             id="docrotSave"
             ref={docrotSaveSelectRed}
             className="rounded bg-gray-50 border-gray-200 
-          lg:px-10 lg:py-3 lg:mb-5
-          sm:text-base sm:px-8 sm:border-2
-          text-sm px-6 py-2 mb-3 border-1 
-          "
+            lg:px-10 lg:py-3 lg:mb-5
+            sm:text-base sm:px-8 sm:border-2
+            text-sm px-6 py-2 mb-3 border-1 
+            "
           >
             <option>هیچکس</option>
             {[...playersInfo].map((item, index) => (
@@ -167,36 +170,36 @@ export default function Form() {
         <div
           aria-label="sniper-shot"
           className="
-        sm:mb-8
-        mb-6
-        "
+          sm:mb-8
+          mb-6
+          "
         >
           <p
             className="
-          text-gray-100
-          lg:mb-2 lg:text-base
-          mb-1 text-sm
-          "
+            text-gray-100
+            lg:mb-2 lg:text-base
+            mb-1 text-sm
+            "
           >
             حرفه ای را بیدار کنید
           </p>
           {sniperShotsNumber < 2 ? (
             <>
-              <div className="mb-3" aria-label="container-for-label">
+              <div aria-label="container-for-label" className="mb-3">
                 <label
                   htmlFor="sniperShot"
                   className="
-                text-gray-100
-          lg:text-base
-          text-sm
-                "
+                  text-gray-100
+                  lg:text-base
+                  text-sm
+                  "
                 >
                   اگر حرفه ای قصد شلیک دارد،هدف شلیک او را مشخص کنید
                 </label>
                 <p
                   className="text-gray-300 mt-1
-                lg:text-base
-                text-sm"
+                  lg:text-base
+                  text-sm"
                 >
                   (حرفه ای فقط دو گلوله برای شلیک دارد)
                 </p>
@@ -205,10 +208,10 @@ export default function Form() {
                 id="sniperShot"
                 ref={sniperShotSelectRef}
                 className="rounded bg-gray-50 border-gray-200 
-          lg:px-10 lg:py-3 lg:mb-5
-          sm:text-base sm:px-8 sm:border-2
-          text-sm px-6 py-2 mb-3 border-1 
-          "
+                lg:px-10 lg:py-3 lg:mb-5
+                sm:text-base sm:px-8 sm:border-2
+                text-sm px-6 py-2 mb-3 border-1 
+                "
               >
                 <option>هیچکس</option>
                 {[...playersInfo].map((item, index) => (
@@ -219,10 +222,10 @@ export default function Form() {
           ) : (
             <p
               className="
-            text-gray-100
-      lg:text-base
-      text-sm
-            "
+              text-gray-100
+              lg:text-base
+              text-sm
+              "
             >
               حرفه ای امکان شلیک ندارد !
             </p>
@@ -232,34 +235,34 @@ export default function Form() {
         <div
           aria-label="lecter-save"
           className="
-        sm:mb-8
-        mb-6
-        "
+          sm:mb-8
+          mb-6
+          "
         >
           <p
             className="
-          text-gray-100
-          lg:mb-2 lg:text-base
-          mb-1 text-sm
-          "
+            text-gray-100
+            lg:mb-2 lg:text-base
+            mb-1 text-sm
+            "
           >
             اکنون تیم مافیا را بیدار کنید
           </p>
-          <div className="mb-3" aria-label="container-for-label">
+          <div aria-label="container-for-label" className="mb-3">
             <label
               htmlFor="lecterSave"
               className="
-            text-gray-100
-          lg:text-base
-          text-sm
-            "
+              text-gray-100
+              lg:text-base
+              text-sm
+              "
             >
               فردی که دکتر لکتر نجات میدهد را مشخص کنید
             </label>
             <p
               className="text-gray-300 mt-1
-            lg:text-base
-            text-sm"
+              lg:text-base
+              text-sm"
             >
               (دکتر لکتر خودش را فقط یکبار میتواند نجات دهد)
             </p>
@@ -268,10 +271,10 @@ export default function Form() {
             id="lecterSave"
             ref={lecterSaveSelectRef}
             className="rounded bg-gray-50 border-gray-200 
-          lg:px-10 lg:py-3 lg:mb-5
-          sm:text-base sm:px-8 sm:border-2
-          text-sm px-6 py-2 mb-3 border-1 
-          "
+            lg:px-10 lg:py-3 lg:mb-5
+            sm:text-base sm:px-8 sm:border-2
+            text-sm px-6 py-2 mb-3 border-1 
+            "
           >
             <option>هیچکس</option>
             {[...playersInfo]
@@ -285,18 +288,18 @@ export default function Form() {
         <div
           aria-label="mafia-shot"
           className="
-        sm:mb-8
-        mb-6
-        "
+          sm:mb-8
+          mb-6
+          "
         >
-          <div className="mb-3" aria-label="container-for-label">
+          <div aria-label="container-for-label" className="mb-3">
             <label
               htmlFor="mafiaShot"
               className="
-            text-gray-100
-          lg:text-base
-          text-sm
-            "
+              text-gray-100
+              lg:text-base
+              text-sm
+              "
             >
               هدف شلیک پدرخوانده را مشخص کنید
             </label>
@@ -305,10 +308,10 @@ export default function Form() {
             id="mafiaShot"
             ref={mafiaShotSelectRef}
             className="rounded bg-gray-50 border-gray-200 
-          lg:px-10 lg:py-3 lg:mb-5
-          sm:text-base sm:px-8 sm:border-2
-          text-sm px-6 py-2 mb-3 border-1 
-          "
+            lg:px-10 lg:py-3 lg:mb-5
+            sm:text-base sm:px-8 sm:border-2
+            text-sm px-6 py-2 mb-3 border-1 
+            "
           >
             {[...playersInfo].map((item, index) => (
               <option key={index}>{item.name}</option>
@@ -316,7 +319,7 @@ export default function Form() {
           </select>
         </div>
 
-        <div className="mb-5" aria-label="container-for-button">
+        <div aria-label="container-for-button" className="mb-5">
           <button
             type="submit"
             className="bg-green-400 rounded text-gray-800 mb-10

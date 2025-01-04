@@ -24,19 +24,19 @@ export default function Header() {
     <>
       <div
         className="bg-red-800 
-      lg:py-6
-      sm:p-5
-         p-4      
-      "
+        lg:py-6
+        sm:p-5
+        p-4      
+        "
       >
         <div className="w-11/12 mx-auto flex justify-between items-center">
           <div></div>
           <div
             className="gotichFont tracking-widest font-black
-          lg:text-6xl
-          sm:text-5xl
-          text-4xl
-          "
+            lg:text-6xl
+            sm:text-5xl
+            text-4xl
+            "
           >
             M A F I A
           </div>
@@ -45,9 +45,9 @@ export default function Header() {
               <button id="quitButton" onClick={handleClickOpenDialog}>
                 <div
                   className="flex items-center hover:text-stone-800
-                lg:text-base
-                sm:text-sm
-                text-xs"
+                  lg:text-base
+                  sm:text-sm
+                  text-xs"
                 >
                   خروج
                   <ImExit className="mr-1" />

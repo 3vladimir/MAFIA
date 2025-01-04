@@ -21,8 +21,8 @@ function Main() {
       <div
         aria-label="whole-container"
         className="
-      lg:my-10
-      my-40"
+        lg:my-10
+        my-40"
       >
         <main>
           <FormForNumberOfPlayers

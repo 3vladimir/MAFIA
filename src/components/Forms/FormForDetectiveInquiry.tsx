@@ -45,22 +45,22 @@ export default function Form() {
             <div aria-label="container-for-form-element" className="basis-2/3">
               <p
                 className="text-gray-100
-               lg:mb-2 lg:text-base
-              mb-1 text-sm"
+                lg:mb-2 lg:text-base
+                mb-1 text-sm"
               >
                 ابتدا کارآگاه را بیدار کنید
               </p>
               <div
                 className="
-               lg:mb-3
-             mb-2"
+                lg:mb-3
+                mb-2"
                 aria-label="container-for-label"
               >
                 <label
                   htmlFor="detectiveInquiry"
                   className="text-gray-100
-                 lg:text-base
-               text-sm"
+                  lg:text-base
+                  text-sm"
                 >
                   فردی که کارآگاه استعلام او را میخواهد مشخص کنید
                 </label>
@@ -82,9 +82,9 @@ export default function Form() {
                 <button
                   type="submit"
                   className="bg-green-400 rounded text-gray-800
-              lg:px-8 lg:py-4 
-              sm:px-6 sm:py-3 text-base
-              px-5 py-2 text-sm"
+                  lg:px-8 lg:py-4 
+                  sm:px-6 sm:py-3 text-base
+                  px-5 py-2 text-sm"
                 >
                   تایید
                 </button>
@@ -102,31 +102,31 @@ export default function Form() {
                 >
                   <p
                     className="
-                lg:text-base
-                sm:text-sm
-                text-xs"
+                    lg:text-base
+                    sm:text-sm
+                    text-xs"
                   >
                     این علامت را به کارآگاه نشان دهید
                   </p>
                   {isMarkedPlayerMafia ? (
                     <BiSolidLike
                       className="
-                  lg:text-9xl
-                  sm:text-7xl
-                  text-4xl"
+                      lg:text-9xl
+                      sm:text-7xl
+                      text-4xl"
                     />
                   ) : (
                     <BiSolidDislike
                       className="
-                  lg:text-9xl
-                  sm:text-7xl
-                  text-4xl"
+                      lg:text-9xl
+                      sm:text-7xl
+                      text-4xl"
                     />
                   )}
                 </div>
               </div>
             ) : (
-              <div className="basis-1/6"></div>
+              <div aria-label="helper-element" className="basis-1/6"></div>
             )}
           </div>
         </form>

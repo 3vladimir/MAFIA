@@ -30,16 +30,16 @@ function PlayerBox({ item }: Props) {
       >
         <div
           className="text-white 
-        lg:text-lg lg:mb-2
-        sm:text-base 
-        text-sm mb-1"
+          lg:text-lg lg:mb-2
+          sm:text-base 
+          text-sm mb-1"
         >
           {item.name}
         </div>
         <div
           className="text-gray-300 text-nowrap
-        lg:text-sm 
-        text-xs"
+          lg:text-sm 
+          text-xs"
         >
           {item.role}
         </div>

@@ -58,22 +58,22 @@ export default function Form({
           <div
             aria-label="container-for-label"
             className="
-          lg:mb-5
-          mb-3"
+            lg:mb-5
+            mb-3"
           >
             <label
               htmlFor="numberOfPlayers"
               className="
-            lg:text-base
-            text-sm"
+              lg:text-base
+              text-sm"
             >
               تعداد نفرات بازی را مشخص کنید
             </label>
           </div>
           <div
             className="
-          lg:mb-5
-          mb-3"
+            lg:mb-5
+            mb-3"
           >
             <input
               aria-label="number-of-players"

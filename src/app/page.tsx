@@ -5,7 +5,10 @@ import Link from "next/link";
 import { Provider } from "react-redux";
 import { store } from "../redux/store/store";
 import { ContainerOfHeaderAndMain, Title } from "../components";
-import { playersNamesAndNumberPageAddress, dayAddress,distributionOfRolesAddress } from "../routes";
+import {
+  playersNamesAndNumberPageAddress,
+  distributionOfRolesAddress,
+} from "../routes";
 import { localStorageNames } from "../lib/constantsValues";
 
 function Main() {
@@ -37,17 +40,17 @@ function Main() {
               aria-label="container-of-link"
               className="
               sm:sp-6
-        pt-9
-        "
+              pt-9
+              "
             >
               <Link href={distributionOfRolesAddress}>
                 <div
                   className="text-white bg-blackAndRedLinearGradient table mx-auto
-              hover:scale-110 transition duration-300
-              lg:p-9 lg:rounded-xl lg:text-4xl lg:mb-5
-              sm:p-6 sm:text-3xl
-              p-5 rounded-lg text-2xl mb-3
-              "
+                  hover:scale-110 transition duration-300
+                  lg:p-9 lg:rounded-xl lg:text-4xl lg:mb-5
+                  sm:p-6 sm:text-3xl
+                  p-5 rounded-lg text-2xl mb-3
+                  "
                 >
                   ادامه بازی قبل
                 </div>
@@ -56,11 +59,11 @@ function Main() {
               <Link href={playersNamesAndNumberPageAddress}>
                 <div
                   className="text-white bg-blackAndRedLinearGradient table mx-auto 
-              hover:scale-110 transition duration-300
-              lg:p-9 lg:rounded-xl lg:text-4xl
-              sm:p-6 sm:text-3xl
-              p-5 rounded-lg text-2xl
-              "
+                  hover:scale-110 transition duration-300
+                  lg:p-9 lg:rounded-xl lg:text-4xl
+                  sm:p-6 sm:text-3xl
+                  p-5 rounded-lg text-2xl
+                  "
                 >
                   بازی جدید
                 </div>
@@ -68,20 +71,15 @@ function Main() {
             </div>
           </>
         ) : (
-          <div
-            aria-label="container-of-link"
-            className="
-         pt-24
-         "
-          >
+          <div aria-label="container-of-link" className="pt-24">
             <Link href={playersNamesAndNumberPageAddress}>
               <div
                 className="text-white bg-blackAndRedLinearGradient table mx-auto 
-              hover:scale-110 transition duration-300
-              lg:p-10 lg:rounded-xl lg:text-4xl
-              sm:p-6 sm:text-3xl
-              p-5 rounded-lg text-2xl
-              "
+                hover:scale-110 transition duration-300
+                lg:p-10 lg:rounded-xl lg:text-4xl
+                sm:p-6 sm:text-3xl
+                p-5 rounded-lg text-2xl
+                "
               >
                 شروع یک بازی
               </div>

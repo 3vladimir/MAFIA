@@ -12,8 +12,8 @@ export function AlertForInvalidNumberOfPlayers({
       {isNumberOfPlayersInvalid && (
         <div
           className="w-fit mx-auto text-red-500
-        lg:text-base lg:mt-2
-        text-sm mt-1"
+          lg:text-base lg:mt-2
+          text-sm mt-1"
         >
           خطا!
           <br />
