@@ -28,7 +28,8 @@ export const localStorageNames = {
   sniperShots: "sniperShots",
   dieHardStatus: "dieHardStatus",
   playersInfo: "playersInfo",
-  nightKills : 'nightKills',
+  nightKills: "nightKills",
+  areRolesDistributed: "areRolesDistributed",
 };
 
 export const dieHardAllStatuses = {

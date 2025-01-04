@@ -55,10 +55,26 @@ export default function Form({
     <>
       <form onSubmit={handleSubmitNumberOfPlayers}>
         <div aria-label="form-holder" className="text-center">
-          <div className="mb-5">
-            <label htmlFor="numberOfPlayers">تعداد نفرات بازی را مشخص کنید</label>
+          <div
+            aria-label="container-for-label"
+            className="
+          lg:mb-5
+          mb-3"
+          >
+            <label
+              htmlFor="numberOfPlayers"
+              className="
+            lg:text-base
+            text-sm"
+            >
+              تعداد نفرات بازی را مشخص کنید
+            </label>
           </div>
-          <div className="mb-5">
+          <div
+            className="
+          lg:mb-5
+          mb-3"
+          >
             <input
               aria-label="number-of-players"
               ref={numberOfPlayersInputRef}
@@ -67,7 +83,12 @@ export default function Form({
               type="text"
               placeholder="0"
               onChange={handleInputChangeNumberOfPlayers}
-              className="focus:outline-none focus:border-red-900 rounded shadow-md p-3 border-2"
+              className="focus:outline-none focus:border-red-900 rounded shadow-md 
+              lg:p-3 lg:border-2 lg:text-base
+              p-2 border-1 text-sm
+              placeholder:text-sm
+              placeholder:lg:text-base
+              "
             />
             <AlertForInvalidNumberOfPlayers
               isNumberOfPlayersInvalid={isNumberOfPlayersInvalid}
@@ -75,7 +96,10 @@ export default function Form({
           </div>
           <button
             type="submit"
-            className="mb-8 bg-red-900 py-4 px-8 rounded text-[white]"
+            className="bg-red-900 rounded text-[white]
+            lg:py-4 lg:px-8
+            sm:text-base
+            py-3 px-6 text-sm mb-8"
           >
             تایید
           </button>

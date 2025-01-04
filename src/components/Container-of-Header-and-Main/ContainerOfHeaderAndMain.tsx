@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Provider } from "react-redux";
 import { store } from "../../redux/store/store";
 import { JSX } from "react/jsx-runtime";
@@ -16,7 +17,7 @@ export default function Container({
   return (
     <>
       <Provider store={store}>
-        <div className="absolute inset-0 flex flex-col">
+        <div className="absolute inset-0 flex flex-col ">
           <Header />
           <div className={classess}>{Main}</div>
         </div>

@@ -10,7 +10,10 @@ function Main() {
 
   return (
     <>
-      <h1 className="text-center text-white text-8xl pt-40">
+      <h1 className="text-center text-white 
+      lg:text-8xl lg:pt-40
+      sm:text-6xl
+      text-4xl pt-36">
         {gameResult == gameModes.CITIZENS_WIN
           ? "شهروندان پیروز شدند !!!"
           : "مافیا پیروز شدند !!!"}

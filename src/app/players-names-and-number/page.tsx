@@ -18,7 +18,12 @@ function Main() {
 
   return (
     <>
-      <div aria-label="whole-container" className="mt-10">
+      <div
+        aria-label="whole-container"
+        className="
+      lg:my-10
+      my-40"
+      >
         <main>
           <FormForNumberOfPlayers
             setIsNumberOfPlayersInvalid={setIsNumberOfPlayersInvalid}
@@ -44,7 +49,7 @@ function Main() {
 export default function App() {
   return (
     <>
-      <Title>تعیین کردن تعداد و نام بازیکنان</Title>
+      <Title>تعیین تعداد و نام بازیکنان</Title>
       <ContainerOfHeaderAndMain Main={<Main />} />
     </>
   );

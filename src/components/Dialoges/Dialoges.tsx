@@ -47,22 +47,36 @@ export function DialogEnterFirstDay({
       <Dialog open={openDialog}>
         <div
           aria-label="dialog-inner-container"
-          className="rounded-xl iranSansFont py-5"
+          className="
+         lg:py-8 lg:rounded-xl
+         py-5 rounded-lg"
         >
-          <p className="px-20 mb-10">وارد روز اول بازی میشوید؟</p>
+          <p
+            className="
+          lg:px-20 
+          sm:px-14 sm:text-base
+          px-10 mb-10 text-sm"
+          >
+            وارد روز اول بازی میشوید؟
+          </p>
           <DialogActions>
             <div
               aria-label="buttons-container"
               className="w-full flex justify-between"
             >
               <button
-                className="basis-1/4 text-center hover:text-sky-700"
+                className="basis-1/4 text-center hover:text-sky-700
+                sm:text-base
+                text-sm"
                 onClick={handleClickConfirm}
               >
                 تایید
               </button>
               <button
-                className="basis-1/4 text-center hover:text-sky-700"
+                className="basis-1/4 text-center hover:text-sky-700
+                sm:text-base
+                text-sm
+                "
                 onClick={handleClickCloseDialog}
               >
                 بازگشت
@@ -93,9 +107,17 @@ export function DialogExitGame({
       <Dialog open={openDialog}>
         <div
           aria-label="dialog-inner-container"
-          className="rounded-xl iranSansFont py-5"
+          // className="rounded-xl iranSansFont py-5"
+          className="
+          lg:py-8 lg:rounded-xl
+          py-5 rounded-lg"
         >
-          <p className="px-20 mb-10">
+          <p
+            className="
+          lg:px-10 
+          sm:px-7 sm:text-base
+          px-5 mb-10 text-sm"
+          >
             آیا مطمئن هستید میخواهید از بازی خارج شوید؟
           </p>
           <DialogActions>
@@ -104,13 +126,17 @@ export function DialogExitGame({
               className="w-full flex justify-between"
             >
               <button
-                className="basis-1/4 text-center hover:text-sky-700"
+                className="basis-1/4 text-center hover:text-sky-700
+                sm:text-base
+                text-sm"
                 onClick={handleClickConfirmDialog}
               >
                 بله
               </button>
               <button
-                className="basis-1/4 text-center hover:text-sky-700"
+                className="basis-1/4 text-center hover:text-sky-700
+                sm:text-base
+                text-sm"
                 onClick={handleClickCloseDialog}
               >
                 بازگشت
@@ -143,9 +169,16 @@ export function DialogPlayerOut({
       <Dialog open={openDialog}>
         <div
           aria-label="dialog-inner-container"
-          className="rounded-xl iranSansFont py-5"
+          className="
+          lg:py-8 lg:rounded-xl
+          py-5 rounded-lg"
         >
-          <p className="px-20 mb-10">
+          <p
+            className="
+          lg:px-20 
+          sm:px-16 sm:text-base
+          px-12 mb-10 text-sm"
+          >
             {playerOut == "هیچکس"
               ? "هیچکس از بازی خارج نشد؟"
               : `${playerOut} از بازی خارج شد؟`}
@@ -156,13 +189,17 @@ export function DialogPlayerOut({
               className="w-full flex justify-between"
             >
               <button
-                className="basis-1/4 text-center hover:text-sky-700"
+                className="basis-1/4 text-center hover:text-sky-700
+              sm:text-base
+              text-sm"
                 onClick={handleClickConfirmDialog}
               >
                 تایید
               </button>
               <button
-                className="basis-1/4 text-center hover:text-sky-700"
+                className="basis-1/4 text-center hover:text-sky-700
+               sm:text-base
+               text-sm"
                 onClick={handleClickCloseDialog}
               >
                 بازگشت
@@ -193,20 +230,47 @@ export function DialogSeeRoles({
       <Dialog open={openDialog}>
         <div
           aria-label="dialog-inner-container"
-          className="px-20 py-14 rounded-xl"
+          className="
+          lg:px-20 lg:py-14 lg:rounded-xl
+          sm:px-16 sm:py-10
+          px-12 py-8 rounded-lg"
         >
           {isRoleSeen ? (
-            <div className="mb-10">{item.name} قبلا نقش خود را دیده است</div>
+            <div
+              className="
+            lg:mb-10
+            sm:mb-6
+            mb-5"
+            >
+              {item.name} قبلا نقش خود را دیده است
+            </div>
           ) : (
-            <div className="iranSansFont text-xl text-center">
-              <p className="text-base mb-10">{item.name}</p>
-              <p className="text-2xl mb-10">{item.role}</p>
+            <div className="text-center">
+              <p
+                className=" 
+              lg:mb-10 lg:text-base
+              sm:mb-6 
+              mb-5 text-sm"
+              >
+                {item.name}
+              </p>
+              <p
+                className=" 
+              lg:mb-10 lg:text-2xl
+              sm:mb-6 sm:text-xl
+              mb-5 text-lg"
+              >
+                {item.role}
+              </p>
             </div>
           )}
           <DialogActions>
             <button
               onClick={handleClickCloseDialog}
-              className="bg-red-500 text-white p-2 mx-auto rounded"
+              className="bg-red-500 text-white mx-auto rounded
+              lg:p-2
+              sm:text-base
+              p-1 text-sm"
             >
               متوجه شدم
             </button>
@@ -228,9 +292,15 @@ export function DialogNightKeels({
   const unParsedNightKills =
     typeof window !== "undefined"
       ? localStorage.getItem(localStorageNames.nightKills) || ""
-      : "defaultValue";
+      : "";
 
-  const nightKills = JSON.parse(unParsedNightKills);
+  let nightKills;
+  try {
+    nightKills = unParsedNightKills ? JSON.parse(unParsedNightKills) : [];
+  } catch (error) {
+    console.error("Error parsing JSON from localStorage:", error);
+    nightKills = [];
+  }
   if (!nightKills[0]) {
     // the array is like [null] and the null should be deleted
     nightKills.pop();
@@ -246,9 +316,17 @@ export function DialogNightKeels({
       <Dialog open={openDialog}>
         <div
           aria-label="dialog-inner-container"
-          className="px-20 py-14 rounded-xl"
+          className="
+           lg:px-16 lg:py-10 lg:rounded-xl
+          sm:px-12 sm:py-8
+          px-8 py-6 rounded-lg"
         >
-          <div className="mb-10">
+          <div
+            className=" 
+           lg:mb-10 lg:text-base
+           sm:mb-6 
+           mb-5 text-sm"
+          >
             در شب گذشته{" "}
             {[...nightKills].map((item, index) => (
               <span key={index}>
@@ -266,7 +344,10 @@ export function DialogNightKeels({
           <DialogActions>
             <button
               onClick={handleClickCloseDialog}
-              className="bg-red-500 text-white p-2 mx-auto rounded"
+              className="bg-red-500 text-white mx-auto rounded
+              lg:p-2
+              sm:text-base
+              p-1 text-sm"
             >
               شروع روز بعدی
             </button>

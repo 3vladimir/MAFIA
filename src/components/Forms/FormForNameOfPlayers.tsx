@@ -60,6 +60,7 @@ export default function Form({
   function initiateLocalStorage() {
     if (typeof window !== "undefined") {
       localStorage.setItem(localStorageNames.isGameStarted, "yes");
+      localStorage.setItem(localStorageNames.areRolesDistributed, "no");
       localStorage.setItem(localStorageNames.gameMode, gameModes.NORMAL);
       localStorage.setItem(localStorageNames.sniperShots, "0");
       localStorage.setItem(
@@ -78,37 +79,56 @@ export default function Form({
   }
   return (
     <>
-      <form onSubmit={handleSubmitNamesOfPlayers}>
-        <div aria-label="form-holder" className="text-center mb-10">
-          <div className="mb-2">
-            نام بازیکنان را وارد کنید
+      <div aria-label="form-holder" className="text-center">
+        <form onSubmit={handleSubmitNamesOfPlayers}>
+          <div
+            className="
+          lg:text-base
+          text-sm mb-2"
+          >
+            نام بازیکنان را وارد کنید{" "}
             <button
               onClick={handleClickRandomNames}
-              className="absolute top-[355px] left-[450px] text-blue-700"
+              className=" text-blue-700
+              lg:text-sm
+              text-xs"
             >
-              ایجاد اسم های رندوم
+              (ایجاد اسم های رندوم)
             </button>
           </div>
-          {[
-            ...listOfPlayers.map((item, index) => (
-              <li key={index} className="mb-1">
-                <input
-                  required
-                  defaultValue={item}
-                  type="text"
-                  className="focus:outline-none border-2 p-3 text-center shadow"
-                />
-              </li>
-            )),
-          ]}
+
+          <ul>
+            {[
+              ...listOfPlayers.map((item, index) => (
+                <li
+                  key={index}
+                  className="
+              lg:mb-1 
+              mb-2 "
+                >
+                  <input
+                    required
+                    defaultValue={item}
+                    type="text"
+                    className="focus:outline-none text-center shadow
+                  lg:border-2 lg:p-3 lg:text-base
+                  border-1 p-2 text-sm"
+                  />
+                </li>
+              )),
+            ]}
+          </ul>
           <button
             type="submit"
-            className="mt-2 bg-red-900 py-4 px-20 rounded text-[white]"
+            className="mt-2 bg-red-900 rounded text-[white]
+            lg:py-4 lg:px-20
+            sm:text-base
+            py-3 px-12 text-sm"
           >
             شروع
           </button>
-        </div>
-      </form>
+        </form>
+      </div>
     </>
   );
 }

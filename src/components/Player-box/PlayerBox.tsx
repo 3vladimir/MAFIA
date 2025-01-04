@@ -20,9 +20,15 @@ function PlayerBox({ item }: Props) {
       <div aria-label="player-box" className="basis-1/12">
         <button
           onClick={handleClickOpenDialog}
-          className="p-16 bg-indigo-800 text-center rounded-xl mb-5 shadow-lg"
+          className="bg-indigo-800 text-center mb-5 shadow-lg
+          lg:p-16 lg:rounded-xl
+          sm:p-10
+          p-6 rounded-lg"
         >
-          <div className="text-xl text-white mb-1">{item.name}</div>
+          <div className="text-white mb-1
+          lg:text-xl 
+          sm:text-lg
+          text-base">{item.name}</div>
         </button>
       </div>
       <DialogSeeRoles

@@ -30,44 +30,107 @@ export default function Form() {
 
   return (
     <>
-      <form aria-label="detective-inquiry" onSubmit={handleSubmit}>
-        <p className="mb-2 text-gray-100">ابتدا کارآگاه را بیدار کنید</p>
-        <div className="mb-3" aria-label="container-for-label">
-          <label htmlFor="detectiveInquiry" className="text-gray-100">
-            فردی که کارآگاه استعلام او را میخواهد مشخص کنید
-          </label>
-        </div>
-        <select
-          id="detectiveInquiry"
-          onChange={handleSelectChange}
-          className="px-10 py-3 rounded bg-gray-50 border-2 border-gray-200 mb-5"
-        >
-          {[...playersInfo].map((item, index) => (
-            <option key={index}>{item.name}</option>
-          ))}
-        </select>
-        <div className="mb-5" aria-label="container-for-button">
-          <button
-            type="submit"
-            className="mb-8 bg-green-400 py-4 px-8 rounded text-gray-800"
+      <div
+        aria-label="form-holder"
+        className="
+        sm:mb-8
+        mb-6"
+      >
+        <form aria-label="detective-inquiry" onSubmit={handleSubmit}>
+          <div
+            aria-label="flex-box-parent"
+            className="w-11/12 mx-auto flex justify-center items-center"
           >
-            تایید
-          </button>
-          {requestForDetective && (
-            <div
-              aria-label="request-for-detective"
-              className="absolute left-64 top-64 text-gray-100"
-            >
-              <p>این علامت را به کارآگاه نشان دهید</p>
-              {isMarkedPlayerMafia ? (
-                <BiSolidLike className="text-9xl" />
-              ) : (
-                <BiSolidDislike className="text-9xl" />
-              )}
+            <div aria-label="helper-element" className="basis-1/6"></div>
+            <div aria-label="container-for-form-element" className="basis-2/3">
+              <p
+                className="text-gray-100
+               lg:mb-2 lg:text-base
+              mb-1 text-sm"
+              >
+                ابتدا کارآگاه را بیدار کنید
+              </p>
+              <div
+                className="
+               lg:mb-3
+             mb-2"
+                aria-label="container-for-label"
+              >
+                <label
+                  htmlFor="detectiveInquiry"
+                  className="text-gray-100
+                 lg:text-base
+               text-sm"
+                >
+                  فردی که کارآگاه استعلام او را میخواهد مشخص کنید
+                </label>
+              </div>
+              <select
+                id="detectiveInquiry"
+                onChange={handleSelectChange}
+                className="rounded bg-gray-50 border-gray-200 
+                lg:px-10 lg:py-3 lg:mb-5
+                sm:text-base sm:px-8 sm:border-2
+                text-sm px-6 py-2 mb-3 border-1 
+                "
+              >
+                {[...playersInfo].map((item, index) => (
+                  <option key={index}>{item.name}</option>
+                ))}
+              </select>
+              <div className="mb-5" aria-label="container-for-button">
+                <button
+                  type="submit"
+                  className="bg-green-400 rounded text-gray-800
+              lg:px-8 lg:py-4 
+              sm:px-6 sm:py-3 text-base
+              px-5 py-2 text-sm"
+                >
+                  تایید
+                </button>
+              </div>
             </div>
-          )}
-        </div>
-      </form>
+
+            {requestForDetective ? (
+              <div
+                aria-label="request-for-detective"
+                className="basis-1/6 text-gray-100"
+              >
+                <div
+                  aria-label="flex parent"
+                  className="flex flex-col items-center"
+                >
+                  <p
+                    className="
+                lg:text-base
+                sm:text-sm
+                text-xs"
+                  >
+                    این علامت را به کارآگاه نشان دهید
+                  </p>
+                  {isMarkedPlayerMafia ? (
+                    <BiSolidLike
+                      className="
+                  lg:text-9xl
+                  sm:text-7xl
+                  text-4xl"
+                    />
+                  ) : (
+                    <BiSolidDislike
+                      className="
+                  lg:text-9xl
+                  sm:text-7xl
+                  text-4xl"
+                    />
+                  )}
+                </div>
+              </div>
+            ) : (
+              <div className="basis-1/6"></div>
+            )}
+          </div>
+        </form>
+      </div>
     </>
   );
 }

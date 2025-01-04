@@ -4,35 +4,36 @@
 
 @font-face {
   font-family: IransnasMedium;
-  src: url(../../public/fonts/IRANSansWeb-Medium.ttf);
+  src: url(/fonts/IRANSansWeb-Medium.ttf);
 }
 
 @font-face {
   font-family: IransnasBold;
-  src: url(../../public/fonts/IRANSansWeb\ Bold.ttf);
+  src: url(/fonts/IRANSansWeb\ Bold.ttf);
 }
 
 @font-face {
   font-family: IransnasLight;
-  src: url(../../public/fonts/IRANSansWeb\ Light.ttf);
+  src: url(/fonts/IRANSansWeb\ Light.ttf);
 }
 @font-face {
   font-family: gothic;
-  src: url(../../public/fonts/Darkcastle_PERSONAL_USE_ONLY.otf);
+  src: url(/fonts/Darkcastle_PERSONAL_USE_ONLY.otf);
 }
 
-.iranSansFont{
+.iranSansFont {
   font-family: IransnasMedium;
 }
 
-.iranSansBoldFont{
+.iranSansBoldFont {
   font-family: IransnasBold;
 }
 
-.gotichFont{
+.gotichFont {
   font-family: gothic;
 }
 
 body {
   font-family: IransnasMedium;
+  overflow-x: hidden;
 }
