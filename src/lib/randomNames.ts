@@ -1,3 +1,4 @@
+"use client";
 const randomNames = [
   "نیلوفر",
   "نگار",
@@ -10,7 +11,7 @@ const randomNames = [
   "علی",
   "کاوه",
   "کورش",
-  "متین", 
+  "متین",
   "سجاد",
   "امین",
   "احسان",
@@ -31,11 +32,13 @@ function produceRandomNames({
   const newRandomNames = [...randomNames];
   for (let i = 0; i < numberOfPlayers; i++) {
     const randomNumber =
-      Math.floor(Math.random() * (newRandomNames.length - 1)) + 1;
+      typeof window !== "undefined"
+        ? Math.floor(Math.random() * (newRandomNames.length - 1)) + 1
+        : 0;
     newListOfPlayers[i] = newRandomNames[randomNumber];
     newRandomNames.splice(randomNumber, 1);
   }
   setListOfPlayers(newListOfPlayers);
 }
 
-export default produceRandomNames
+export default produceRandomNames;

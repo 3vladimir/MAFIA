@@ -6,10 +6,12 @@ import { DialogExitGame } from "../../components";
 import { localStorageNames } from "../../lib/constantsValues";
 
 export default function Header() {
-  const isGameStarted =
+  const [isGameStarted,setIsGameStarted] = React.useState(
+
     typeof window !== "undefined"
-      ? localStorage.getItem(localStorageNames.isGameStarted) === "yes"
-      : "defaultValue";
+    ? localStorage.getItem(localStorageNames.isGameStarted) === "yes"
+    : false
+  )
 
   const [openDialog, setOpenDialog] = React.useState(false);
 

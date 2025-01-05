@@ -12,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa" dir="rtl">
+    <html lang="fa" dir="rtl" suppressHydrationWarning={true}>
       <head>
         <link rel="icon" href="./facicon.ico" sizes="any" />
         <link

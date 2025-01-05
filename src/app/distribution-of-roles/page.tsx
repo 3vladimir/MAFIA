@@ -35,9 +35,10 @@ function Main() {
 
   function distributeTheRoles() {
     for (let i = 0; i < numberOfPlayers; i++) {
-      const randomNumber = Math.floor(
-        Math.random() * (rolesForCurrentGame.length - 1)
-      );
+      const randomNumber =
+        typeof window !== "undefined"
+          ? Math.floor(Math.random() * (rolesForCurrentGame.length - 1))
+          : 0;
       const randomRole = rolesForCurrentGame[randomNumber];
       dispatch(indicateRole({ role: randomRole, index: i }));
 
@@ -111,8 +112,10 @@ function Main() {
             aria-label="players-boxes-container"
             className="flex justify-evenly flex-wrap w-5/6 mx-auto"
           >
-            {[...playersInfo].map((item, index) => (
-              <PlayerBox key={index} item={item} />
+            {playersInfo.map((item, index) => (
+              <div key={index}>
+                <PlayerBox item={item} />
+              </div>
             ))}
           </div>
           {areRolesDistributed && (

@@ -79,7 +79,7 @@ function Main() {
             sm:basis-2/3 
             basis-3/6"
           >
-            {[...playersInfo].map((item, index) => (
+            {playersInfo.map((item, index) => (
               <PlayerLabel key={index} item={item} />
             ))}
           </div>
@@ -92,7 +92,6 @@ function Main() {
             <FormForPlayerOut
               setOpenDialog={setOpenDialog}
               setPlayerOut={setPlayerOut}
-              playersInfo={playersInfo}
             />
           </div>
         </div>

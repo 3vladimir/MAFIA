@@ -31,13 +31,20 @@ export default function Form() {
   const sniper = playersInfo.find((item) => {
     return item.role === role.SNIPER;
   });
-  const citizens = playersInfo.filter((item) => {
+  const citizensTeam = playersInfo.filter((item) => {
     return item.side == side.CITIZEN;
   });
+  const mafiaTeam = playersInfo.filter((item) => {
+    return item.side == side.MAFIA;
+  });
 
-  const citizenNames = new Array(citizens.length);
-  citizens.forEach((item, index) => {
+  const citizenNames = new Array(citizensTeam.length);
+  citizensTeam.forEach((item, index) => {
     citizenNames[index] = item.name;
+  });
+  const mafiaNames = new Array(mafiaTeam.length);
+  mafiaTeam.forEach((item, index) => {
+    mafiaNames[index] = item.name;
   });
 
   const unParsedSniperShotsNumber =
@@ -49,7 +56,7 @@ export default function Form() {
   const dieHardStatus =
     typeof window !== "undefined"
       ? localStorage.getItem(localStorageNames.dieHardStatus)
-      : "defaultValue";
+      : "";
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -58,16 +65,6 @@ export default function Form() {
     const lecterSave = lecterSaveSelectRef.current?.value;
     const mafiaShot = mafiaShotSelectRef.current?.value;
     const nightKills: (string | undefined)[] = [];
-
-    if (sniperShot !== "هیچکس") {
-      sniperShotsNumber++;
-      if (typeof window !== "undefined") {
-        localStorage.setItem(
-          localStorageNames.sniperShots,
-          sniperShotsNumber.toString()
-        );
-      }
-    }
 
     if (mafiaShot == docrotSave) {
       console.log("دکتر یکی رو سیو کرد");
@@ -88,14 +85,25 @@ export default function Form() {
       nightKills.push(mafiaShot);
     }
 
-    if (citizenNames.includes(sniperShot)) {
-      dispatch(removePlayer({ name: sniper?.name || "" }));
-      nightKills.push(sniper?.name);
-    } else if (sniperShot == lecterSave) {
-      console.log("دکتر لکتر یکی رو سیو کرده");
-    } else {
-      dispatch(removePlayer({ name: sniperShot || "" }));
-      nightKills.push(sniperShot);
+    if (sniperShot !== "هیچکس") {
+      if (mafiaNames.includes(sniperShot)) {
+        sniperShotsNumber++;
+        if (sniperShot == lecterSave || sniperShot == docrotSave) {
+          console.log("مافیا نجات داده شد");
+        } else {
+          dispatch(removePlayer({ name: sniperShot || "" }));
+          nightKills.push(sniperShot);
+        }
+      } else {
+        dispatch(removePlayer({ name: sniper?.name || "" }));
+        nightKills.push(sniper?.name);
+      }
+      if (typeof window !== "undefined") {
+        localStorage.setItem(
+          localStorageNames.sniperShots,
+          sniperShotsNumber.toString()
+        );
+      }
     }
 
     nightKills.forEach((element, index) => {
@@ -279,14 +287,14 @@ export default function Form() {
             <option>هیچکس</option>
             {[...playersInfo]
               .filter((item) => item.side == side.MAFIA)
-              .map((mafia, index) => (
-                <option key={index}>{mafia.name}</option>
+              .map((mafiaTeam, index) => (
+                <option key={index}>{mafiaTeam.name}</option>
               ))}
           </select>
         </div>
 
         <div
-          aria-label="mafia-shot"
+          aria-label="mafiaTeam-shot"
           className="
           sm:mb-8
           mb-6

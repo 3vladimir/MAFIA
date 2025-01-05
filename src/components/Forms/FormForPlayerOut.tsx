@@ -1,15 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import * as React from "react";
-import { Player } from "../../types";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, AppDispatch } from "../../redux/store/store";
 
 type Props = {
   setOpenDialog: React.Dispatch<React.SetStateAction<boolean>>;
   setPlayerOut: React.Dispatch<React.SetStateAction<string>>;
-  playersInfo: Player[];
 };
 
-function Form({ setOpenDialog, setPlayerOut, playersInfo }: Props) {
+function Form({ setOpenDialog, setPlayerOut }: Props) {
+  const playersInfo = useSelector((state: RootState) => state.players.value);
+
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setOpenDialog(true);
@@ -35,7 +37,7 @@ function Form({ setOpenDialog, setPlayerOut, playersInfo }: Props) {
         <select
           id="outPlayerSelect"
           onChange={handleSelectChange}
-          className="rounded bg-white border-gray-200 
+          className="rounded bg-white border-gray-200
           lg:px-10 lg:py-3 lg:border-2 lg:mb-8
           sm:px-7 sm:py-2 sm:border-2 sm:mb-4 sm:text-base
           px-5 py-1 border-1 mb-2 text-sm

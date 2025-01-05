@@ -1,16 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-"use client";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Player } from "../../types";
+import { playersInfo } from "../../lib/playersInfoStoraged";
 
 type Props = {
   value: Player[];
 };
-
-const playersStoredInfo =
-  typeof window !== "undefined" ? localStorage.getItem("playersInfo") : null;
-
-const playersInfo = playersStoredInfo ? JSON.parse(playersStoredInfo) : [];
 
 const initialState: Props = {
   value: playersInfo,
