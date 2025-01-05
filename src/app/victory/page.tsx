@@ -10,13 +10,16 @@ function Main() {
 
   return (
     <>
-      <h1 className="text-center text-white 
-      lg:text-8xl lg:pt-40
-      sm:text-6xl
-      text-4xl pt-36">
+      <h1
+        dir="ltr"
+        className="text-center text-white wildBreathOfZeldaFont tracking-widest
+      lg:text-9xl lg:pt-40
+      sm:text-7xl
+      text-4xl pt-36"
+      >
         {gameResult == gameModes.CITIZENS_WIN
-          ? "شهروندان پیروز شدند !!!"
-          : "مافیا پیروز شدند !!!"}
+          ? "CITIZENS WIN !!!"
+          : "MAFIA WIN !!!"}
       </h1>
     </>
   );

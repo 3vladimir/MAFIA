@@ -21,6 +21,10 @@
   src: url(/fonts/Darkcastle_PERSONAL_USE_ONLY.otf);
 }
 
+@font-face {
+  font-family: wildBreathOfZelda;
+  src: url(../../public/fonts/The\ Wild\ Breath\ of\ Zelda.otf);
+}
 .iranSansFont {
   font-family: IransnasMedium;
 }
@@ -31,6 +35,10 @@
 
 .gotichFont {
   font-family: gothic;
+}
+
+.wildBreathOfZeldaFont{
+  font-family: wildBreathOfZelda;
 }
 
 body {
