@@ -11,6 +11,7 @@ import { removePlayer } from "../../redux/reducers/playersReducer";
 import { usePathname } from "next/navigation";
 import { Player } from "../../types";
 import { localStorageNames } from "../../lib/constantsValues";
+import { daysToPersian } from "../../lib/daysToPersian";
 
 type PropsForDialogEnterFirstDay = {
   openDialog: boolean;
@@ -32,6 +33,7 @@ type PropsForDialogSeeRoles = {
   openDialog: boolean;
   setoOpenDialog: React.Dispatch<React.SetStateAction<boolean>>;
   item: Player;
+  areRolesDistributed: boolean;
 };
 
 type PropsForDialogNightKeels = {
@@ -44,9 +46,14 @@ export function DialogEnterFirstDay({
   handleClickCloseDialog,
 }: PropsForDialogEnterFirstDay) {
   const router = useRouter();
+  let round: number | string =
+    typeof window !== "undefined"
+      ? localStorage.getItem(localStorageNames.round) || "1"
+      : "1";
+  round = parseInt(round);
 
   function handleClickConfirm() {
-    router.replace(`${dayAddress}/1`);
+    router.replace(`${dayAddress}/${round}`);
   }
   return (
     <>
@@ -63,7 +70,7 @@ export function DialogEnterFirstDay({
             sm:px-14 sm:text-base
             px-10 mb-10 text-sm"
           >
-            وارد روز اول بازی میشوید؟
+            {`وارد روز ${daysToPersian({ round: round })} بازی میشوید`}
           </p>
           <DialogActions>
             <div
@@ -221,13 +228,17 @@ export function DialogSeeRoles({
   openDialog,
   setoOpenDialog,
   item,
+  areRolesDistributed,
 }: PropsForDialogSeeRoles) {
   const [isRoleSeen, setIsRoleSeen] = React.useState(false);
+
   function handleClickCloseDialog() {
     setoOpenDialog(false);
-    setTimeout(() => {
-      setIsRoleSeen(true);
-    }, 100);
+    if (areRolesDistributed) {
+      setTimeout(() => {
+        setIsRoleSeen(true);
+      }, 100);
+    }
   }
 
   return (
@@ -299,13 +310,8 @@ export function DialogNightKeels({
       ? localStorage.getItem(localStorageNames.nightKills) || ""
       : "";
 
-  let nightKills;
-  try {
-    nightKills = unParsedNightKills ? JSON.parse(unParsedNightKills) : [];
-  } catch (error) {
-    console.error("Error parsing JSON from localStorage:", error);
-    nightKills = [];
-  }
+  const nightKills = JSON.parse(unParsedNightKills) || [];
+
   if (!nightKills[0]) {
     // the array is like [null] and the null should be deleted
     nightKills.pop();
@@ -313,6 +319,9 @@ export function DialogNightKeels({
 
   function handleClickCloseDialog() {
     setOpenDialog(false);
+    if (typeof window !== "undefined") {
+      localStorage.setItem(localStorageNames.round, (round + 1).toString());
+    }
     router.replace(`${dayAddress}/${round + 1}`);
   }
 

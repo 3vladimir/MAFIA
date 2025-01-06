@@ -30,6 +30,7 @@ export const localStorageNames = {
   playersInfo: "playersInfo",
   nightKills: "nightKills",
   areRolesDistributed: "areRolesDistributed",
+  round: "round",
 };
 
 export const dieHardAllStatuses = {

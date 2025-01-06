@@ -16,6 +16,7 @@ import {
 } from "../../components";
 import { rolesListByOrder } from "../../lib/rolesListByOrder";
 import { role, side, localStorageNames } from "../../lib/constantsValues";
+import { daysToPersian } from "@/lib/daysToPersian";
 
 function Main() {
   const dispatch = useDispatch<AppDispatch>();
@@ -32,6 +33,13 @@ function Main() {
       : false
   );
   const [openDialog, setOpenDialog] = React.useState(false);
+
+  let round: string | number =
+    typeof window !== "undefined"
+      ? localStorage.getItem(localStorageNames.round) || "1"
+      : "1";
+
+  round = parseInt(round);
 
   function distributeTheRoles() {
     for (let i = 0; i < numberOfPlayers; i++) {
@@ -114,7 +122,10 @@ function Main() {
           >
             {playersInfo.map((item, index) => (
               <div key={index}>
-                <PlayerBox item={item} />
+                <PlayerBox
+                  item={item}
+                  areRolesDistributed={areRolesDistributed}
+                />
               </div>
             ))}
           </div>
@@ -134,7 +145,7 @@ function Main() {
                 sm:px-12 sm:py-5 sm:text-base
                 px-10 py-4 text-sm"
               >
-                ورود به روز اول
+                {`ورود به روز ${daysToPersian({ round: round })}`}
               </button>
             </div>
           )}

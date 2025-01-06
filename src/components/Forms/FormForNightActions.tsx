@@ -15,7 +15,7 @@ export default function Form() {
   const playersInfo = useSelector((state: RootState) => state.players.value);
   const dispatch = useDispatch<AppDispatch>();
 
-  const docrotSaveSelectRed = React.useRef<HTMLSelectElement>(null);
+  const doctorSaveSelectRef = React.useRef<HTMLSelectElement>(null);
   const sniperShotSelectRef = React.useRef<HTMLSelectElement>(null);
   const lecterSaveSelectRef = React.useRef<HTMLSelectElement>(null);
   const mafiaShotSelectRef = React.useRef<HTMLSelectElement>(null);
@@ -60,7 +60,7 @@ export default function Form() {
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const docrotSave = docrotSaveSelectRed.current?.value;
+    const docrotSave = doctorSaveSelectRef.current?.value;
     const sniperShot = sniperShotSelectRef.current?.value;
     const lecterSave = lecterSaveSelectRef.current?.value;
     const mafiaShot = mafiaShotSelectRef.current?.value;
@@ -161,7 +161,7 @@ export default function Form() {
           </div>
           <select
             id="docrotSave"
-            ref={docrotSaveSelectRed}
+            ref={doctorSaveSelectRef}
             className="rounded bg-gray-50 border-gray-200 
             lg:px-10 lg:py-3 lg:mb-5
             sm:text-base sm:px-8 sm:border-2

@@ -6,16 +6,17 @@ import { DialogSeeRoles } from "../../components";
 
 type Props = {
   item: Player;
+  areRolesDistributed: boolean
 };
 
-function PlayerBox({ item }: Props) {
+function PlayerBox({ item,areRolesDistributed }: Props) {
   const [openDialog, setoOpenDialog] = React.useState(false);
 
   const handleClickOpenDialog = () => {
     setoOpenDialog(true);
   };
 
-  return (
+  return (  
     <>
       <div aria-label="player-box" className="basis-1/12">
         <button
@@ -35,6 +36,7 @@ function PlayerBox({ item }: Props) {
         openDialog={openDialog}
         setoOpenDialog={setoOpenDialog}
         item={item}
+        areRolesDistributed={areRolesDistributed}
       />
     </>
   );

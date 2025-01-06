@@ -28,6 +28,7 @@ export default function Form({
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   const playersInfo = useSelector((state: RootState) => state.players.value);
+  const formRef = React.useRef<HTMLFormElement>(null);
 
   function registerNamesOfPlayers() {
     listOfPlayers.forEach((element) => {
@@ -50,12 +51,11 @@ export default function Form({
     });
   }
 
-  React.useEffect(() => {
-    localStorage.setItem(
-      localStorageNames.playersInfo,
-      JSON.stringify(playersInfo)
-    );
-  }, [playersInfo]);
+  function handleInputChange(index: number, value: string) {
+    const updatedPlayers = [...listOfPlayers];
+    updatedPlayers[index] = value;
+    setListOfPlayers(updatedPlayers);
+  }
 
   function initiateLocalStorage() {
     if (typeof window !== "undefined") {
@@ -63,6 +63,7 @@ export default function Form({
       localStorage.setItem(localStorageNames.areRolesDistributed, "no");
       localStorage.setItem(localStorageNames.gameMode, gameModes.NORMAL);
       localStorage.setItem(localStorageNames.sniperShots, "0");
+      localStorage.setItem(localStorageNames.round, "1");
       localStorage.setItem(
         localStorageNames.dieHardStatus,
         dieHardAllStatuses.withShield
@@ -72,15 +73,45 @@ export default function Form({
 
   function handleSubmitNamesOfPlayers(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const form = formRef.current;
+
+    if (form) {
+      const inputs = form.querySelectorAll("input");
+      let hasEmptyFields = false;
+
+      inputs.forEach((input) => {
+        if (!input.value.trim()) {
+          hasEmptyFields = true;
+          input.classList.add("border-red-500");
+        } else {
+          input.classList.remove("border-red-500");
+        }
+      });
+
+      if (hasEmptyFields) {
+        alert("لطفاً همه فیلدها را پر کنید.");
+        return;
+      } else {
+        console.log("فرم با موفقیت ارسال شد!");
+      }
+    }
     initiateLocalStorage();
     dispatch(clearList());
     registerNamesOfPlayers();
     router.replace(distributionOfRolesAddress);
   }
+
+  React.useEffect(() => {
+    localStorage.setItem(
+      localStorageNames.playersInfo,
+      JSON.stringify(playersInfo)
+    );
+  }, [playersInfo]);
+
   return (
     <>
       <div aria-label="form-holder" className="text-center">
-        <form onSubmit={handleSubmitNamesOfPlayers}>
+        <form ref={formRef} onSubmit={handleSubmitNamesOfPlayers}>
           <div
             className="
             lg:text-base
@@ -88,6 +119,7 @@ export default function Form({
           >
             نام بازیکنان را وارد کنید{" "}
             <button
+              type="button"
               onClick={handleClickRandomNames}
               className=" text-blue-700
               lg:text-sm
@@ -98,25 +130,25 @@ export default function Form({
           </div>
 
           <ul>
-            {[
-              ...listOfPlayers.map((item, index) => (
-                <li
-                  key={index}
-                  className="
+            {listOfPlayers.map((item, index) => (
+              <li
+                key={index}
+                className="
                   lg:mb-1 
                   mb-2 "
-                >
-                  <input
-                    required
-                    defaultValue={item}
-                    type="text"
-                    className="focus:outline-none text-center shadow
+              >
+                <input
+                  defaultValue={item}
+                  type="text"
+                  className="focus:outline-none text-center shadow rounded
                     lg:border-2 lg:p-3 lg:text-base
                     border-1 p-2 text-sm"
-                  />
-                </li>
-              )),
-            ]}
+                  onChange={(event) => {
+                    handleInputChange(index, event.target.value);
+                  }}
+                />
+              </li>
+            ))}
           </ul>
           <button
             type="submit"
