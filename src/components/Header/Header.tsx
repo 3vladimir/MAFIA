@@ -6,12 +6,11 @@ import { DialogExitGame } from "../../components";
 import { localStorageNames } from "../../lib/constantsValues";
 
 export default function Header() {
-  const [isGameStarted,setIsGameStarted] = React.useState(
-
+  const [isGameStarted, setIsGameStarted] = React.useState(
     typeof window !== "undefined"
-    ? localStorage.getItem(localStorageNames.isGameStarted) === "yes"
-    : false
-  )
+      ? localStorage.getItem(localStorageNames.isGameStarted) === "yes"
+      : false
+  );
 
   const [openDialog, setOpenDialog] = React.useState(false);
 
@@ -31,8 +30,11 @@ export default function Header() {
         p-4      
         "
       >
-        <div className="w-11/12 mx-auto flex justify-between items-center">
-          <div></div>
+        <div
+          aria-label="flexbox-parent"
+          className="w-11/12 mx-auto flex justify-between items-center"
+        >
+          <div aria-label="helper-element"></div>
           <div
             className="gotichFont tracking-widest font-black
             lg:text-6xl
@@ -42,7 +44,7 @@ export default function Header() {
           >
             M A F I A
           </div>
-          <div>
+          <div aria-label="container-for-quit-button">
             {isGameStarted && (
               <button id="quitButton" onClick={handleClickOpenDialog}>
                 <div

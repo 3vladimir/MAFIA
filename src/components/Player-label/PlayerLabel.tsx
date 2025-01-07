@@ -8,11 +8,13 @@ type Props = {
   item: Player;
 };
 
-function PlayerBox({ item }: Props) {
+function PlayerLabel({ item }: Props) {
   const playerLabelRef = React.useRef<HTMLInputElement>(null);
+
   React.useEffect(() => {
     if (item.side == side.MAFIA) {
       playerLabelRef.current?.classList.add("bg-red-700");
+      // red background for mafia members
     } else {
       playerLabelRef.current?.classList.remove("bg-red-700");
     }
@@ -28,24 +30,24 @@ function PlayerBox({ item }: Props) {
         sm:p-6 sm:mb-3
         p-3 mb-2 rounded-lg"
       >
-        <div
+        <p
           className="text-white 
           lg:text-lg lg:mb-2
           sm:text-base 
           text-sm mb-1"
         >
           {item.name}
-        </div>
-        <div
+        </p>
+        <p
           className="text-gray-300 text-nowrap
           lg:text-sm 
           text-xs"
         >
           {item.role}
-        </div>
+        </p>
       </div>
     </>
   );
 }
 
-export default PlayerBox;
+export default PlayerLabel;

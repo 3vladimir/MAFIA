@@ -4,32 +4,30 @@ import * as React from "react";
 import { AlertForInvalidNumberOfPlayers } from "../../components";
 
 type Props = {
-  setIsNumberOfPlayersInvalid: React.Dispatch<React.SetStateAction<boolean>>;
   setIsNumberOfPlayersConfirmed: React.Dispatch<React.SetStateAction<boolean>>;
   setNumberOfPlayers: React.Dispatch<React.SetStateAction<number>>;
   setListOfPlayers: React.Dispatch<React.SetStateAction<string[]>>;
-  isNumberOfPlayersInvalid: boolean;
 };
 
 export default function Form({
-  setIsNumberOfPlayersInvalid,
   setIsNumberOfPlayersConfirmed,
   setNumberOfPlayers,
   setListOfPlayers,
-  isNumberOfPlayersInvalid,
 }: Props) {
   const numberOfPlayersInputRef = React.useRef<HTMLInputElement>(null);
+  const [isNumberOfPlayersValid, setIsNumberOfPlayersvalid] =
+    React.useState(true);
 
   function handleInputChangeNumberOfPlayers() {
-    const isInputInvalid = /^[1-9][0-9]*$/;
+    const validInputs = /^[1-9][0-9]*$/;
 
     if (numberOfPlayersInputRef.current) {
-      if (!isInputInvalid.test(numberOfPlayersInputRef.current.value)) {
+      setIsNumberOfPlayersvalid(true);
+
+      if (!validInputs.test(numberOfPlayersInputRef.current.value)) {
+        // the input is anything exept number
         numberOfPlayersInputRef.current.value = "";
       }
-    }
-    if (isNumberOfPlayersInvalid) {
-      setIsNumberOfPlayersInvalid(false);
     }
   }
 
@@ -42,12 +40,15 @@ export default function Form({
       : 0;
 
     if (numberOfPlayers < 7 || numberOfPlayers > 12) {
-      setIsNumberOfPlayersInvalid(true);
+      // number of players is invalid
+      setIsNumberOfPlayersvalid(false);
       setIsNumberOfPlayersConfirmed(false);
     } else {
-      setIsNumberOfPlayersInvalid(false);
+      // number of players is valid
+      setIsNumberOfPlayersvalid(true);
       setNumberOfPlayers(numberOfPlayers);
       setListOfPlayers(new Array(numberOfPlayers).fill(""));
+      // create list of players considering the number of players
       setIsNumberOfPlayersConfirmed(true);
     }
   }
@@ -76,9 +77,8 @@ export default function Form({
             mb-3"
           >
             <input
-              aria-label="number-of-players"
-              ref={numberOfPlayersInputRef}
               id="numberOfPlayers"
+              ref={numberOfPlayersInputRef}
               dir="ltr"
               type="text"
               placeholder="0"
@@ -91,7 +91,7 @@ export default function Form({
               "
             />
             <AlertForInvalidNumberOfPlayers
-              isNumberOfPlayersInvalid={isNumberOfPlayersInvalid}
+              isNumberOfPlayersValid={isNumberOfPlayersValid}
             />
           </div>
           <button

@@ -31,10 +31,10 @@ export default function Form({
   const formRef = React.useRef<HTMLFormElement>(null);
 
   function registerNamesOfPlayers() {
-    listOfPlayers.forEach((element) => {
+    listOfPlayers.forEach((item) => {
       dispatch(
         addPlayer({
-          name: element,
+          name: item,
           side: UNKNOWN,
           role: UNKNOWN,
         })
@@ -60,10 +60,10 @@ export default function Form({
   function initiateLocalStorage() {
     if (typeof window !== "undefined") {
       localStorage.setItem(localStorageNames.isGameStarted, "yes");
-      localStorage.setItem(localStorageNames.areRolesDistributed, "no");
-      localStorage.setItem(localStorageNames.gameMode, gameModes.NORMAL);
-      localStorage.setItem(localStorageNames.sniperShots, "0");
       localStorage.setItem(localStorageNames.round, "1");
+      localStorage.setItem(localStorageNames.gameMode, gameModes.NORMAL);
+      localStorage.setItem(localStorageNames.areRolesDistributed, "no");
+      localStorage.setItem(localStorageNames.sniperShots, "0");
       localStorage.setItem(
         localStorageNames.dieHardStatus,
         dieHardAllStatuses.withShield
@@ -76,15 +76,18 @@ export default function Form({
     const form = formRef.current;
 
     if (form) {
+      // access to input values
       const inputs = form.querySelectorAll("input");
       let hasEmptyFields = false;
 
-      inputs.forEach((input) => {
-        if (!input.value.trim()) {
+      inputs.forEach((item) => {
+        if (!item.value.trim()) {
           hasEmptyFields = true;
-          input.classList.add("border-red-500");
+          item.classList.add("border-red-500");
+          // error mode
         } else {
-          input.classList.remove("border-red-500");
+          item.classList.remove("border-red-500");
+          // remove error mode
         }
       });
 
@@ -97,7 +100,9 @@ export default function Form({
     }
     initiateLocalStorage();
     dispatch(clearList());
+    // clear loaclStorage
     registerNamesOfPlayers();
+    // set the new names
     router.replace(distributionOfRolesAddress);
   }
 
@@ -113,6 +118,7 @@ export default function Form({
       <div aria-label="form-holder" className="text-center">
         <form ref={formRef} onSubmit={handleSubmitNamesOfPlayers}>
           <div
+            aria-label="container-for-button"
             className="
             lg:text-base
             text-sm mb-2"
@@ -121,7 +127,7 @@ export default function Form({
             <button
               type="button"
               onClick={handleClickRandomNames}
-              className=" text-blue-700
+              className="text-blue-700
               lg:text-sm
               text-xs"
             >
@@ -139,6 +145,7 @@ export default function Form({
               >
                 <input
                   defaultValue={item}
+                  // if user clicked the random names button,show the names in input
                   type="text"
                   className="focus:outline-none text-center shadow rounded
                     lg:border-2 lg:p-3 lg:text-base

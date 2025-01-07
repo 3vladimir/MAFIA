@@ -51,8 +51,8 @@ export default function Form() {
     typeof window !== "undefined"
       ? localStorage.getItem(localStorageNames.sniperShots) || ""
       : "";
-
   let sniperShotsNumber = parseInt(unParsedSniperShotsNumber);
+
   const dieHardStatus =
     typeof window !== "undefined"
       ? localStorage.getItem(localStorageNames.dieHardStatus)
@@ -66,48 +66,60 @@ export default function Form() {
     const mafiaShot = mafiaShotSelectRef.current?.value;
     const nightKills: (string | undefined)[] = [];
 
+    // mafia shot part
     if (mafiaShot == docrotSave) {
       console.log("دکتر یکی رو سیو کرد");
     } else if (mafiaShot == dieHard?.name) {
+      // mafia target is die hard
       if (dieHardStatus == dieHardAllStatuses.withShield) {
+        // it is the first time that die is shot
         if (typeof window !== "undefined") {
           localStorage.setItem(
             localStorageNames.dieHardStatus,
             dieHardAllStatuses.shieldLess
+            // die hard has no more a shield
           );
         }
       } else {
+        // it is the second time that die hard is shot
         dispatch(removePlayer({ name: mafiaShot || "" }));
         nightKills.push(mafiaShot);
       }
     } else {
+      // mafia target is not die hard
       dispatch(removePlayer({ name: mafiaShot || "" }));
       nightKills.push(mafiaShot);
     }
 
+    // sniper shot part
     if (sniperShot !== "هیچکس") {
-      if (mafiaNames.includes(sniperShot)) {
-        sniperShotsNumber++;
-        if (sniperShot == lecterSave || sniperShot == docrotSave) {
-          console.log("مافیا نجات داده شد");
-        } else {
-          dispatch(removePlayer({ name: sniperShot || "" }));
-          nightKills.push(sniperShot);
-        }
-      } else {
-        dispatch(removePlayer({ name: sniper?.name || "" }));
-        nightKills.push(sniper?.name);
-      }
+      // sniper has a shot
+      sniperShotsNumber++;
       if (typeof window !== "undefined") {
         localStorage.setItem(
           localStorageNames.sniperShots,
           sniperShotsNumber.toString()
         );
       }
+      if (mafiaNames.includes(sniperShot)) {
+        // sniper target is mafia
+        if (sniperShot == lecterSave || sniperShot == docrotSave) {
+          console.log("مافیا نجات داده شد");
+        } else {
+          // sniper killed a mafia
+          dispatch(removePlayer({ name: sniperShot || "" }));
+          nightKills.push(sniperShot);
+        }
+      } else {
+        // sniper target is citizen and sniper should get out
+        dispatch(removePlayer({ name: sniper?.name || "" }));
+        nightKills.push(sniper?.name);
+      }
     }
 
     nightKills.forEach((element, index) => {
       if (element == nightKills[index + 1]) {
+        // if someone is killed by two shots,just one time should be considered
         nightKills.pop();
       }
     });
@@ -169,7 +181,7 @@ export default function Form() {
             "
           >
             <option>هیچکس</option>
-            {[...playersInfo].map((item, index) => (
+            {playersInfo.map((item, index) => (
               <option key={index}>{item.name}</option>
             ))}
           </select>
@@ -192,6 +204,7 @@ export default function Form() {
             حرفه ای را بیدار کنید
           </p>
           {sniperShotsNumber < 2 ? (
+            // sniper has still bullets to shot
             <>
               <div aria-label="container-for-label" className="mb-3">
                 <label
@@ -222,12 +235,13 @@ export default function Form() {
                 "
               >
                 <option>هیچکس</option>
-                {[...playersInfo].map((item, index) => (
+                {playersInfo.map((item, index) => (
                   <option key={index}>{item.name}</option>
                 ))}
               </select>
             </>
           ) : (
+            // sniper has no more bullets to shot
             <p
               className="
               text-gray-100
@@ -240,6 +254,16 @@ export default function Form() {
           )}
         </div>
 
+        <p
+          className="
+            text-gray-100
+            lg:mb-2 lg:text-base
+            mb-1 text-sm
+            "
+        >
+          اکنون تیم مافیا را بیدار کنید
+        </p>
+
         <div
           aria-label="lecter-save"
           className="
@@ -247,15 +271,6 @@ export default function Form() {
           mb-6
           "
         >
-          <p
-            className="
-            text-gray-100
-            lg:mb-2 lg:text-base
-            mb-1 text-sm
-            "
-          >
-            اکنون تیم مافیا را بیدار کنید
-          </p>
           <div aria-label="container-for-label" className="mb-3">
             <label
               htmlFor="lecterSave"
@@ -285,7 +300,7 @@ export default function Form() {
             "
           >
             <option>هیچکس</option>
-            {[...playersInfo]
+            {playersInfo
               .filter((item) => item.side == side.MAFIA)
               .map((mafiaTeam, index) => (
                 <option key={index}>{mafiaTeam.name}</option>
@@ -321,7 +336,7 @@ export default function Form() {
             text-sm px-6 py-2 mb-3 border-1 
             "
           >
-            {[...playersInfo].map((item, index) => (
+            {playersInfo.map((item, index) => (
               <option key={index}>{item.name}</option>
             ))}
           </select>

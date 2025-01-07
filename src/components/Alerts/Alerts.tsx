@@ -1,15 +1,15 @@
 "use client";
 import * as React from "react";
 type Props = {
-  isNumberOfPlayersInvalid: boolean;
+  isNumberOfPlayersValid: boolean;
 };
 
 export function AlertForInvalidNumberOfPlayers({
-  isNumberOfPlayersInvalid,
+  isNumberOfPlayersValid,
 }: Props) {
   return (
     <>
-      {isNumberOfPlayersInvalid && (
+      {!isNumberOfPlayersValid && (
         <div
           className="w-fit mx-auto text-red-500
           lg:text-base lg:mt-2

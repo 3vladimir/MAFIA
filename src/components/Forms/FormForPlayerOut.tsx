@@ -44,7 +44,7 @@ function Form({ setOpenDialog, setPlayerOut }: Props) {
           "
         >
           <option>هیچکس</option>
-          {[...playersInfo].map((item, index) => (
+          {playersInfo.map((item, index) => (
             <option key={index}>{item.name}</option>
           ))}
         </select>

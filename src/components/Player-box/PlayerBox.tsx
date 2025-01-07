@@ -32,6 +32,7 @@ function PlayerBox({ item,areRolesDistributed }: Props) {
           text-base">{item.name}</div>
         </button>
       </div>
+      
       <DialogSeeRoles
         openDialog={openDialog}
         setoOpenDialog={setoOpenDialog}

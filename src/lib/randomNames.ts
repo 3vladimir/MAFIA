@@ -29,7 +29,10 @@ function produceRandomNames({
   numberOfPlayers,
 }: Props) {
   const newListOfPlayers = [...listOfPlayers];
+  // helping array
   const newRandomNames = [...randomNames];
+  // helping array
+
   for (let i = 0; i < numberOfPlayers; i++) {
     const randomNumber =
       typeof window !== "undefined"
@@ -37,6 +40,7 @@ function produceRandomNames({
         : 0;
     newListOfPlayers[i] = newRandomNames[randomNumber];
     newRandomNames.splice(randomNumber, 1);
+    // get a random name to an index and delete that name from the list
   }
   setListOfPlayers(newListOfPlayers);
 }

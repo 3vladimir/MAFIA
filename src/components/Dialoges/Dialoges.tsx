@@ -55,6 +55,7 @@ export function DialogEnterFirstDay({
   function handleClickConfirm() {
     router.replace(`${dayAddress}/${round}`);
   }
+
   return (
     <>
       <Dialog open={openDialog}>
@@ -112,9 +113,9 @@ export function DialogExitGame({
     if (typeof window !== "undefined") {
       localStorage.setItem(localStorageNames.isGameStarted, "no");
     }
-
     router.push(homePageAddress);
   }
+
   return (
     <>
       <Dialog open={openDialog}>
@@ -236,6 +237,7 @@ export function DialogSeeRoles({
     setoOpenDialog(false);
     if (areRolesDistributed) {
       setTimeout(() => {
+        // wait a moment to dialog get closed
         setIsRoleSeen(true);
       }, 100);
     }
@@ -309,7 +311,6 @@ export function DialogNightKeels({
     typeof window !== "undefined"
       ? localStorage.getItem(localStorageNames.nightKills) || ""
       : "";
-
   const nightKills = JSON.parse(unParsedNightKills) || [];
 
   if (!nightKills[0]) {
@@ -349,10 +350,13 @@ export function DialogNightKeels({
               </span>
             ))}
             {nightKills.length == 0
-              ? "کسی کشته نشد"
+              ? // means no one is killed
+                "کسی کشته نشد"
               : nightKills.length == 1
-              ? "کشته شد"
-              : "کشته شدند"}
+              ? // means only one player is killed
+                "کشته شد"
+              : // means two players are killed
+                "کشته شدند"}
           </div>
 
           <DialogActions>

@@ -12,14 +12,15 @@ type Props = {
 export default function Container({
   Main,
   backgroundColor = "bg-[snow]",
-}: Props) {
-  const classess = `grow ${backgroundColor}`;
+}: // default color for pages
+Props) {
+  const classessOfMain = `grow ${backgroundColor}`;
   return (
     <>
       <Provider store={store}>
         <div className="absolute inset-0 flex flex-col ">
           <Header />
-          <div className={classess}>{Main}</div>
+          <div className={classessOfMain}>{Main}</div>
         </div>
       </Provider>
     </>

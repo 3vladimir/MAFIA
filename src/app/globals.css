@@ -6,12 +6,10 @@
   font-family: IransnasMedium;
   src: url(/fonts/IRANSansWeb-Medium.ttf);
 }
-
 @font-face {
   font-family: IransnasBold;
   src: url(/fonts/IRANSansWeb\ Bold.ttf);
 }
-
 @font-face {
   font-family: IransnasLight;
   src: url(/fonts/IRANSansWeb\ Light.ttf);
@@ -20,11 +18,11 @@
   font-family: gothic;
   src: url(/fonts/Darkcastle_PERSONAL_USE_ONLY.otf);
 }
-
 @font-face {
   font-family: wildBreathOfZelda;
   src: url(../../public/fonts/The\ Wild\ Breath\ of\ Zelda.otf);
 }
+
 .iranSansFont {
   font-family: IransnasMedium;
 }

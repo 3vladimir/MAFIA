@@ -12,8 +12,6 @@ function Main() {
   const [numberOfPlayers, setNumberOfPlayers] = React.useState(0);
   const [isNumberOfPlayersConfirmed, setIsNumberOfPlayersConfirmed] =
     React.useState(false);
-  const [isNumberOfPlayersInvalid, setIsNumberOfPlayersInvalid] =
-    React.useState(false);
   const [listOfPlayers, setListOfPlayers] = React.useState([""]);
 
   return (
@@ -26,11 +24,9 @@ function Main() {
       >
         <main>
           <FormForNumberOfPlayers
-            setIsNumberOfPlayersInvalid={setIsNumberOfPlayersInvalid}
             setIsNumberOfPlayersConfirmed={setIsNumberOfPlayersConfirmed}
             setNumberOfPlayers={setNumberOfPlayers}
             setListOfPlayers={setListOfPlayers}
-            isNumberOfPlayersInvalid={isNumberOfPlayersInvalid}
           />
 
           {isNumberOfPlayersConfirmed && (

@@ -8,12 +8,15 @@ import { role } from "../../lib/constantsValues";
 
 export default function Form() {
   const playersInfo = useSelector((state: RootState) => state.players.value);
-  const [requestForDetective, setRequestForDetective] = React.useState(false);
+  const [
+    isRequestForDetectiveInquiryTrue,
+    setIsRequestForDetectiveInquiryTrue,
+  ] = React.useState(false);
   const [isMarkedPlayerMafia, setIsMarkedPlayerMafia] = React.useState(false);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setRequestForDetective(true);
+    setIsRequestForDetectiveInquiryTrue(true);
   }
 
   function handleSelectChange(event: React.ChangeEvent<HTMLSelectElement>) {
@@ -21,10 +24,13 @@ export default function Form() {
     const player = playersInfo.find((item) => {
       return item.name === playerName;
     });
-    if (player?.role == role.LECTER || player?.role == role.MAFIA) {
-      setIsMarkedPlayerMafia(true);
-    } else {
-      setIsMarkedPlayerMafia(false);
+    const rolesForTrueInquiryOfDetective = [role.LECTER, role.MAFIA];
+    if (player) {
+      if (rolesForTrueInquiryOfDetective.includes(player?.role)) {
+        setIsMarkedPlayerMafia(true);
+      } else {
+        setIsMarkedPlayerMafia(false);
+      }
     }
   }
 
@@ -74,7 +80,7 @@ export default function Form() {
                 text-sm px-6 py-2 mb-3 border-1 
                 "
               >
-                {[...playersInfo].map((item, index) => (
+                {playersInfo.map((item, index) => (
                   <option key={index}>{item.name}</option>
                 ))}
               </select>
@@ -91,7 +97,7 @@ export default function Form() {
               </div>
             </div>
 
-            {requestForDetective ? (
+            {isRequestForDetectiveInquiryTrue ? (
               <div
                 aria-label="request-for-detective"
                 className="basis-1/6 text-gray-100"

@@ -21,9 +21,11 @@ import { daysToPersian } from "@/lib/daysToPersian";
 function Main() {
   const dispatch = useDispatch<AppDispatch>();
   const playersInfo = useSelector((state: RootState) => state.players.value);
+
   const numberOfPlayers = playersInfo.length;
   const rolesForCurrentGame = new Array(numberOfPlayers).fill("");
-  rolesForCurrentGame.forEach((element, index) => {
+  rolesForCurrentGame.forEach((item, index) => {
+    // according to the number of players,roles determine
     rolesForCurrentGame[index] = rolesListByOrder[index];
   });
 
@@ -38,10 +40,9 @@ function Main() {
     typeof window !== "undefined"
       ? localStorage.getItem(localStorageNames.round) || "1"
       : "1";
-
   round = parseInt(round);
 
-  function distributeTheRoles() {
+  function handleClickDistributeTheRoles() {
     for (let i = 0; i < numberOfPlayers; i++) {
       const randomNumber =
         typeof window !== "undefined"
@@ -56,9 +57,11 @@ function Main() {
       } else {
         dispatch(indicateSide({ side: side.CITIZEN, index: i }));
       }
+      // after assigning the role to a player,the role should be deleted from the list
       rolesForCurrentGame.splice(randomNumber, 1);
       setAreRolesDistributed(true);
     }
+
     if (typeof window !== "undefined") {
       localStorage.setItem(localStorageNames.areRolesDistributed, "yes");
     }
@@ -83,8 +86,8 @@ function Main() {
       <div
         aria-label="whole-container"
         className="
-      lg:my-10
-      my-8"
+        lg:my-10
+        my-8"
       >
         <main>
           <div
@@ -96,9 +99,9 @@ function Main() {
             {areRolesDistributed ? (
               <p
                 className="
-              lg:py-6 mx-auto
-              sm:text-base sm:w-full
-              py-5 text-sm w-1/2"
+                lg:py-6 mx-auto
+                sm:text-base sm:w-full
+                py-5 text-sm w-1/2"
               >
                 نقش ها پخش شد.با کلیک کردن بر روی هر اسم،میتوانید نقش خود را
                 ببینید
@@ -109,7 +112,7 @@ function Main() {
                 lg:px-3 lg:py-6
                 sm:text-base
                 px-2 py-5 text-sm"
-                onClick={distributeTheRoles}
+                onClick={handleClickDistributeTheRoles}
               >
                 پخش کردن نقش ها
               </button>
