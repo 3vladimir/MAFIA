@@ -9,42 +9,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../../redux/store/store";
 import { removePlayer } from "../../redux/reducers/playersReducer";
 import { usePathname } from "next/navigation";
-import { Player } from "../../types";
 import { localStorageNames } from "../../lib/constantsValues";
 import { daysToPersian } from "../../lib/daysToPersian";
-
-type PropsForDialogEnterFirstDay = {
-  openDialog: boolean;
-  handleClickCloseDialog: () => void;
-};
-
-type PropsForDialogExitGame = {
-  openDialog: boolean;
-  handleClickCloseDialog: () => void;
-};
-
-type PropsForDialogPlayerOut = {
-  openDialog: boolean;
-  handleClickCloseDialog: () => void;
-  playerOut: string;
-};
-
-type PropsForDialogSeeRoles = {
-  openDialog: boolean;
-  setoOpenDialog: React.Dispatch<React.SetStateAction<boolean>>;
-  item: Player;
-  areRolesDistributed: boolean;
-};
-
-type PropsForDialogNightKeels = {
-  openDialog: boolean;
-  setOpenDialog: React.Dispatch<React.SetStateAction<boolean>>;
-};
+import * as types from "../../types";
 
 export function DialogEnterFirstDay({
   openDialog,
   handleClickCloseDialog,
-}: PropsForDialogEnterFirstDay) {
+}: types.PropsForDialogEnterFirstDay) {
   const router = useRouter();
   let round: number | string =
     typeof window !== "undefined"
@@ -106,7 +78,7 @@ export function DialogEnterFirstDay({
 export function DialogExitGame({
   openDialog,
   handleClickCloseDialog,
-}: PropsForDialogExitGame) {
+}: types.PropsForDialogExitGame) {
   const router = useRouter();
 
   function handleClickConfirmDialog() {
@@ -166,7 +138,7 @@ export function DialogPlayerOut({
   openDialog,
   handleClickCloseDialog,
   playerOut,
-}: PropsForDialogPlayerOut) {
+}: types.PropsForDialogPlayerOut) {
   const path = usePathname();
   const round = parseInt(path.slice(5));
   const dispatch = useDispatch<AppDispatch>();
@@ -230,7 +202,7 @@ export function DialogSeeRoles({
   setoOpenDialog,
   item,
   areRolesDistributed,
-}: PropsForDialogSeeRoles) {
+}: types.PropsForDialogSeeRoles) {
   const [isRoleSeen, setIsRoleSeen] = React.useState(false);
 
   function handleClickCloseDialog() {
@@ -302,7 +274,7 @@ export function DialogSeeRoles({
 export function DialogNightKeels({
   openDialog,
   setOpenDialog,
-}: PropsForDialogNightKeels) {
+}: types.PropsForDialogNightKeels) {
   const path = usePathname();
   const round = parseInt(path.slice(7));
   const router = useRouter();

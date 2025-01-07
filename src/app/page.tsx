@@ -20,10 +20,8 @@ function Main() {
       localStorage.setItem(localStorageNames.isGameStarted, "no");
     } else if (localStorage.getItem(localStorageNames.isGameStarted) == "yes") {
       setIsGameStarted(true);
-    } else {
-      setIsGameStarted(false);
     }
-  }, [localStorage.getItem(localStorageNames.isGameStarted)]);
+  });
 
   return (
     <>
