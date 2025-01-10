@@ -282,7 +282,8 @@ export function DialogNightKeels({
   const unParsedNightKills =
     typeof window !== "undefined"
       ? localStorage.getItem(localStorageNames.nightKills) || "[]"
-      : "[]";
+      : // becasue of JSON.parse(),initial value should be an array
+        "[]";
   const nightKills = JSON.parse(unParsedNightKills) || [];
 
   if (!nightKills[0]) {
