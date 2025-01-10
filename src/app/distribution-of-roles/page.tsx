@@ -83,16 +83,11 @@ function Main() {
 
   return (
     <>
-      <div
-        aria-label="whole-container"
-        className="
-        lg:my-10
-        my-8"
-      >
+      <div aria-label="whole-container" className="my-8">
         <main>
           <div
             aria-label="distribute-roles-container"
-            className="text-center mb-10 
+            className="text-center mb-8 
             lg:text-lg
             sm:text-base"
           >
@@ -136,7 +131,7 @@ function Main() {
             <div
               aria-label="go-to-first-day-button-container"
               className="text-center
-              lg:mt-10
+              lg:mt-2
               sm:mt-5
               mt-2"
             >

@@ -114,7 +114,7 @@ function App() {
       <Title>روز بازی</Title>
       <ContainerOfHeaderAndMain
         Main={<Main />}
-        backgroundColor="bg-yellow-50"
+        backgroundColor="bg-yellow-200"
       />
       ;
     </>
