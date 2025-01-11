@@ -1,5 +1,5 @@
 export { default as Header } from "./Header/Header";
-export { default as ContainerOfHeaderAndMain } from "./Container-of-Header-and-Main/ContainerOfHeaderAndMain";
+export { default as WholeContainer } from "./Whole-container/WholeContainer";
 export { AlertForInvalidNumberOfPlayers } from "./Alerts/Alerts";
 export { default as FormForNameOfPlayers } from "./Forms/FormForNameOfPlayers";
 export { default as FormForNumberOfPlayers } from "./Forms/FormForNumberOfPlayers";

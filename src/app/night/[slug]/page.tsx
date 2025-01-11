@@ -2,10 +2,9 @@
 "use client";
 import * as React from "react";
 import {
-  ContainerOfHeaderAndMain,
+  WholeContainer,
   FormForDetectiveInquiry,
   FormForNightActions,
-  Title,
 } from "../../../components";
 import { usePathname } from "next/navigation";
 import { daysToPersian } from "../../../lib/daysToPersian";
@@ -44,8 +43,11 @@ function Main() {
 function App() {
   return (
     <>
-      <Title>شب بازی</Title>
-      <ContainerOfHeaderAndMain Main={<Main />} backgroundColor="bg-sky-950" />
+      <WholeContainer
+        Main={<Main />}
+        title="شب بازی"
+        backgroundColor="bg-sky-950"
+      />
     </>
   );
 }

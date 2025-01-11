@@ -4,7 +4,7 @@ function App({ children }: { children: string }) {
   return (
     <HelmetProvider>
       <Helmet>
-        <title dir="rtl">{`${children} | مافیا`}</title>
+        <title lang="fa" dir="rtl">{`${children} | مافیا`}</title>
       </Helmet>
     </HelmetProvider>
   );

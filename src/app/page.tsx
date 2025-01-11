@@ -1,11 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import * as React from "react";
 import Link from "next/link";
 import { Provider } from "react-redux";
 import { store } from "../redux/store/store";
-import { ContainerOfHeaderAndMain, Title } from "../components";
+import { WholeContainer } from "../components";
 import {
   playersNamesAndNumberPageAddress,
   distributionOfRolesAddress,
@@ -106,9 +105,8 @@ function Main() {
 export default function App() {
   return (
     <>
-      <Title>صفحه اصلی</Title>
       <Provider store={store}>
-        <ContainerOfHeaderAndMain Main={<Main />} />
+        <WholeContainer Main={<Main />} title="صفحه اصلی" />
       </Provider>
     </>
   );

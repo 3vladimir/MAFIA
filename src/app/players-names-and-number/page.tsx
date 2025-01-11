@@ -2,10 +2,9 @@
 "use client";
 import * as React from "react";
 import {
-  ContainerOfHeaderAndMain,
+  WholeContainer,
   FormForNameOfPlayers,
   FormForNumberOfPlayers,
-  Title,
 } from "../../components";
 
 function Main() {
@@ -45,8 +44,10 @@ function Main() {
 export default function App() {
   return (
     <>
-      <Title>تعیین تعداد و نام بازیکنان</Title>
-      <ContainerOfHeaderAndMain Main={<Main />} />
+      <WholeContainer
+        Main={<Main />}
+        title="تعیین تعداد و نام بازیکنان"
+      />
     </>
   );
 }

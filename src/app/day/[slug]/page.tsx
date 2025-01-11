@@ -2,11 +2,10 @@
 "use client";
 import * as React from "react";
 import {
-  ContainerOfHeaderAndMain,
+  WholeContainer,
   PlayerLabel,
   DialogPlayerOut,
   FormForPlayerOut,
-  Title,
 } from "../../../components";
 import { usePathname, useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
@@ -111,9 +110,9 @@ function Main() {
 function App() {
   return (
     <>
-      <Title>روز بازی</Title>
-      <ContainerOfHeaderAndMain
+      <WholeContainer
         Main={<Main />}
+        title="روز بازی"
         backgroundColor="bg-yellow-200"
       />
       ;

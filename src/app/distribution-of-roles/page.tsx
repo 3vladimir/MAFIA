@@ -9,10 +9,9 @@ import {
   indicateSide,
 } from "../../redux/reducers/playersReducer";
 import {
-  ContainerOfHeaderAndMain,
+  WholeContainer,
   PlayerBox,
   DialogEnterFirstDay,
-  Title,
 } from "../../components";
 import { rolesListByOrder } from "../../lib/rolesListByOrder";
 import { role, side, localStorageNames } from "../../lib/constantsValues";
@@ -160,8 +159,7 @@ function Main() {
 export default function App() {
   return (
     <>
-      <Title>توزیع نقش ها</Title>
-      <ContainerOfHeaderAndMain Main={<Main />} />
+      <WholeContainer Main={<Main />} title="توزیع نقش ها" />
     </>
   );
 }
