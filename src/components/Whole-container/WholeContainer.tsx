@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Provider } from "react-redux";
-import { store } from "../../redux/store/store";
+import { store } from "@/redux/store/store";
 import { JSX } from "react/jsx-runtime";
-import { Header, Title } from "..";
+import { Header, Title } from "@/components";
 
 type Props = {
   Main: JSX.Element;

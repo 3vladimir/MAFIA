@@ -5,13 +5,16 @@ import {
   WholeContainer,
   FormForDetectiveInquiry,
   FormForNightActions,
-} from "../../../components";
+} from "@/components";
 import { usePathname } from "next/navigation";
-import { daysToPersian } from "../../../lib/daysToPersian";
+import { nightAddress } from "@/routes";
+import { daysToPersian } from "@/lib/daysToPersian";
 
 function Main() {
   const path = usePathname();
-  const round = parseInt(path.slice(7));
+  const lengthOfNightAddress = nightAddress.length + 1;
+  // current address is something like: '/night/NUMBER' and we need only that NUMBER
+  const round = parseInt(path.slice(lengthOfNightAddress));
 
   return (
     <>

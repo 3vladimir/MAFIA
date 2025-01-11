@@ -3,18 +3,17 @@
 "use client";
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "../../redux/store/store";
+import { RootState, AppDispatch } from "@/redux/store/store";
+import { indicateRole, indicateSide } from "@/redux/reducers/playersReducer";
+import { WholeContainer, PlayerBox, DialogEnterFirstDay } from "@/components";
+import { rolesListByOrder } from "@/lib/rolesListByOrder";
 import {
-  indicateRole,
-  indicateSide,
-} from "../../redux/reducers/playersReducer";
-import {
-  WholeContainer,
-  PlayerBox,
-  DialogEnterFirstDay,
-} from "../../components";
-import { rolesListByOrder } from "../../lib/rolesListByOrder";
-import { role, side, localStorageNames } from "../../lib/constantsValues";
+  role,
+  side,
+  localStorageNames,
+  YES,
+  UNDEFINED,
+} from "@/lib/constantsValues";
 import { daysToPersian } from "@/lib/daysToPersian";
 
 function Main() {
@@ -29,14 +28,14 @@ function Main() {
   });
 
   const [areRolesDistributed, setAreRolesDistributed] = React.useState(
-    typeof window !== "undefined"
-      ? localStorage.getItem(localStorageNames.areRolesDistributed) === "yes"
+    typeof window !== UNDEFINED
+      ? localStorage.getItem(localStorageNames.areRolesDistributed) === YES
       : false
   );
   const [openDialog, setOpenDialog] = React.useState(false);
 
   let round: string | number =
-    typeof window !== "undefined"
+    typeof window !== UNDEFINED
       ? localStorage.getItem(localStorageNames.round) || "1"
       : "1";
   round = parseInt(round);
@@ -44,7 +43,7 @@ function Main() {
   function handleClickDistributeTheRoles() {
     for (let i = 0; i < numberOfPlayers; i++) {
       const randomNumber =
-        typeof window !== "undefined"
+        typeof window !== UNDEFINED
           ? Math.floor(Math.random() * (rolesForCurrentGame.length - 1))
           : 0;
       const randomRole = rolesForCurrentGame[randomNumber];
@@ -61,8 +60,8 @@ function Main() {
       setAreRolesDistributed(true);
     }
 
-    if (typeof window !== "undefined") {
-      localStorage.setItem(localStorageNames.areRolesDistributed, "yes");
+    if (typeof window !== UNDEFINED) {
+      localStorage.setItem(localStorageNames.areRolesDistributed, YES);
     }
   }
 

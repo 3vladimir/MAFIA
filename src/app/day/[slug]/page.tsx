@@ -6,23 +6,26 @@ import {
   PlayerLabel,
   DialogPlayerOut,
   FormForPlayerOut,
-} from "../../../components";
+} from "@/components";
 import { usePathname, useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "../../../redux/store/store";
-import { daysToPersian } from "../../../lib/daysToPersian";
+import { RootState, AppDispatch } from "@/redux/store/store";
+import { daysToPersian } from "@/lib/daysToPersian";
 import {
   side,
   gameModes,
   localStorageNames,
-} from "../../../lib/constantsValues";
-import { victoryAddress } from "../../../routes";
+  NO_ONE,
+} from "@/lib/constantsValues";
+import { victoryAddress, dayAddress } from "@/routes";
 
 function Main() {
   const path = usePathname();
-  const round = parseInt(path.slice(5));
+  const lengthOfDayAddress = dayAddress.length + 1;
+  // current address is something like: '/day/NUMBER' and we need only that NUMBER
+  const round = parseInt(path.slice(lengthOfDayAddress));
   const router = useRouter();
-  const [playerOut, setPlayerOut] = React.useState("هیچکس");
+  const [playerOut, setPlayerOut] = React.useState(NO_ONE);
   const playersInfo = useSelector((state: RootState) => state.players.value);
   const [openDialog, setOpenDialog] = React.useState(false);
 

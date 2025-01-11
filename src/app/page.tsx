@@ -3,21 +3,21 @@
 import * as React from "react";
 import Link from "next/link";
 import { Provider } from "react-redux";
-import { store } from "../redux/store/store";
-import { WholeContainer } from "../components";
+import { store } from "@/redux/store/store";
+import { WholeContainer } from "@/components";
 import {
   playersNamesAndNumberPageAddress,
   distributionOfRolesAddress,
-} from "../routes";
-import { localStorageNames } from "../lib/constantsValues";
+} from "@/routes";
+import { localStorageNames, YES, NO } from "@/lib/constantsValues";
 
 function Main() {
   const [isGameStarted, setIsGameStarted] = React.useState(false);
   React.useEffect(() => {
     if (!localStorage.getItem(localStorageNames.isGameStarted)) {
       // if localStorage is null,it should get the value of "no"
-      localStorage.setItem(localStorageNames.isGameStarted, "no");
-    } else if (localStorage.getItem(localStorageNames.isGameStarted) == "yes") {
+      localStorage.setItem(localStorageNames.isGameStarted, NO);
+    } else if (localStorage.getItem(localStorageNames.isGameStarted) == YES) {
       setIsGameStarted(true);
     }
   });

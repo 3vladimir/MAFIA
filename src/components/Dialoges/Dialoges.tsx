@@ -3,16 +3,16 @@
 import * as React from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
-import { homePageAddress, dayAddress, nightAddress } from "../../routes";
+import { homePageAddress, dayAddress, nightAddress } from "@/routes";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "../../redux/store/store";
-import { removePlayer } from "../../redux/reducers/playersReducer";
+import { RootState, AppDispatch } from "@/redux/store/store";
+import { removePlayer } from "@/redux/reducers/playersReducer";
 import { usePathname } from "next/navigation";
 import { IoMdClose } from "react-icons/io";
-import { localStorageNames } from "../../lib/constantsValues";
-import { daysToPersian } from "../../lib/daysToPersian";
-import * as types from "../../types";
+import { localStorageNames, NO, UNDEFINED } from "@/lib/constantsValues";
+import { daysToPersian } from "@/lib/daysToPersian";
+import * as types from "@/types/dialogesTypes";
 
 export function DialogEnterFirstDay({
   openDialog,
@@ -20,7 +20,7 @@ export function DialogEnterFirstDay({
 }: types.PropsForDialogEnterFirstDay) {
   const router = useRouter();
   let round: number | string =
-    typeof window !== "undefined"
+    typeof window !== UNDEFINED
       ? localStorage.getItem(localStorageNames.round) || "1"
       : "1";
   round = parseInt(round);
@@ -88,8 +88,8 @@ export function DialogExitGame({
   const router = useRouter();
 
   function handleClickConfirmDialog() {
-    if (typeof window !== "undefined") {
-      localStorage.setItem(localStorageNames.isGameStarted, "no");
+    if (typeof window !== UNDEFINED) {
+      localStorage.setItem(localStorageNames.isGameStarted, NO);
     }
     router.push(homePageAddress);
   }
@@ -294,11 +294,14 @@ export function DialogNightKeels({
   setOpenDialog,
 }: types.PropsForDialogNightKeels) {
   const path = usePathname();
-  const round = parseInt(path.slice(7));
+  const lengthOfNightAddress = nightAddress.length + 1;
+  // current address is something like: '/night/NUMBER' and we need only that NUMBER
+  const round = parseInt(path.slice(lengthOfNightAddress));
+
   const router = useRouter();
 
   const unParsedNightKills =
-    typeof window !== "undefined"
+    typeof window !== UNDEFINED
       ? localStorage.getItem(localStorageNames.nightKills) || "[]"
       : // becasue of JSON.parse(),initial value should be an array
         "[]";
@@ -311,7 +314,7 @@ export function DialogNightKeels({
 
   function handleClickCloseDialog() {
     setOpenDialog(false);
-    if (typeof window !== "undefined") {
+    if (typeof window !== UNDEFINED) {
       localStorage.setItem(localStorageNames.round, (round + 1).toString());
     }
     router.replace(`${dayAddress}/${round + 1}`);

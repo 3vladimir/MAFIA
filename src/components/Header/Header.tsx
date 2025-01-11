@@ -2,13 +2,13 @@
 "use client";
 import * as React from "react";
 import { ImExit } from "react-icons/im";
-import { DialogExitGame } from "../../components";
-import { localStorageNames } from "../../lib/constantsValues";
+import { DialogExitGame } from "@/components";
+import { localStorageNames, YES, UNDEFINED } from "@/lib/constantsValues";
 
 export default function Header() {
   const [isGameStarted, setIsGameStarted] = React.useState(
-    typeof window !== "undefined"
-      ? localStorage.getItem(localStorageNames.isGameStarted) === "yes"
+    typeof window !== UNDEFINED
+      ? localStorage.getItem(localStorageNames.isGameStarted) === YES
       : false
   );
 

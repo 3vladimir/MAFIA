@@ -1,4 +1,4 @@
-import { role } from "./constantsValues";
+import { role } from "@/lib/constantsValues";
 
 export const rolesListByOrder = [
   role.GODFATHER,

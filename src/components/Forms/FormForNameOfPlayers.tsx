@@ -3,16 +3,19 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "../../redux/store/store";
-import { addPlayer, clearList } from "../../redux/reducers/playersReducer";
-import { distributionOfRolesAddress } from "../../routes";
-import produceRandomNames from "../../lib/randomNames";
+import { RootState, AppDispatch } from "@/redux/store/store";
+import { addPlayer, clearList } from "@/redux/reducers/playersReducer";
+import { distributionOfRolesAddress } from "@/routes";
+import produceRandomNames from "@/lib/randomNames";
 import {
   UNKNOWN,
+  YES,
+  NO,
   gameModes,
   localStorageNames,
   dieHardAllStatuses,
-} from "../../lib/constantsValues";
+  UNDEFINED,
+} from "@/lib/constantsValues";
 
 type Props = {
   listOfPlayers: string[];
@@ -58,11 +61,11 @@ export default function Form({
   }
 
   function initiateLocalStorage() {
-    if (typeof window !== "undefined") {
-      localStorage.setItem(localStorageNames.isGameStarted, "yes");
+    if (typeof window !== UNDEFINED) {
+      localStorage.setItem(localStorageNames.isGameStarted, YES);
       localStorage.setItem(localStorageNames.round, "1");
       localStorage.setItem(localStorageNames.gameMode, gameModes.NORMAL);
-      localStorage.setItem(localStorageNames.areRolesDistributed, "no");
+      localStorage.setItem(localStorageNames.areRolesDistributed, NO);
       localStorage.setItem(localStorageNames.sniperShots, "0");
       localStorage.setItem(
         localStorageNames.dieHardStatus,

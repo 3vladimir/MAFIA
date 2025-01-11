@@ -1,4 +1,5 @@
 "use client";
+import { UNDEFINED } from "@/lib/constantsValues";
 const randomNames = [
   "نیلوفر",
   "نگار",
@@ -35,7 +36,7 @@ function produceRandomNames({
 
   for (let i = 0; i < numberOfPlayers; i++) {
     const randomNumber =
-      typeof window !== "undefined"
+      typeof window !== UNDEFINED
         ? Math.floor(Math.random() * (newRandomNames.length - 1)) + 1
         : 0;
     newListOfPlayers[i] = newRandomNames[randomNumber];

@@ -2,14 +2,16 @@
 "use client";
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "../../redux/store/store";
-import { removePlayer } from "../../redux/reducers/playersReducer";
-import { role, side } from "../../lib/constantsValues";
-import { DialogNightKeels } from "../../components";
+import { RootState, AppDispatch } from "@/redux/store/store";
+import { removePlayer } from "@/redux/reducers/playersReducer";
+import { role, side } from "@/lib/constantsValues";
+import { DialogNightKeels } from "@/components";
 import {
   localStorageNames,
   dieHardAllStatuses,
-} from "../../lib/constantsValues";
+  NO_ONE,
+  UNDEFINED,
+} from "@/lib/constantsValues";
 
 export default function Form() {
   const playersInfo = useSelector((state: RootState) => state.players.value);
@@ -48,13 +50,13 @@ export default function Form() {
   });
 
   const unParsedSniperShotsNumber =
-    typeof window !== "undefined"
+    typeof window !== UNDEFINED
       ? localStorage.getItem(localStorageNames.sniperShots) || ""
       : "";
   let sniperShotsNumber = parseInt(unParsedSniperShotsNumber);
 
   const dieHardStatus =
-    typeof window !== "undefined"
+    typeof window !== UNDEFINED
       ? localStorage.getItem(localStorageNames.dieHardStatus)
       : "";
 
@@ -73,7 +75,7 @@ export default function Form() {
       // mafia target is die hard
       if (dieHardStatus == dieHardAllStatuses.withShield) {
         // it is the first time that die is shot
-        if (typeof window !== "undefined") {
+        if (typeof window !== UNDEFINED) {
           localStorage.setItem(
             localStorageNames.dieHardStatus,
             dieHardAllStatuses.shieldLess
@@ -92,10 +94,10 @@ export default function Form() {
     }
 
     // sniper shot part
-    if (sniperShot !== "هیچکس") {
+    if (sniperShot !== NO_ONE) {
       // sniper has a shot
       sniperShotsNumber++;
-      if (typeof window !== "undefined") {
+      if (typeof window !== UNDEFINED) {
         localStorage.setItem(
           localStorageNames.sniperShots,
           sniperShotsNumber.toString()
@@ -124,7 +126,7 @@ export default function Form() {
       }
     });
 
-    if (typeof window !== "undefined") {
+    if (typeof window !== UNDEFINED) {
       localStorage.setItem(
         localStorageNames.nightKills,
         JSON.stringify(nightKills)
@@ -180,7 +182,7 @@ export default function Form() {
             text-sm px-6 py-2 mb-3 border-1 
             "
           >
-            <option>هیچکس</option>
+            <option>{NO_ONE}</option>
             {playersInfo.map((item, index) => (
               <option key={index}>{item.name}</option>
             ))}
@@ -234,7 +236,7 @@ export default function Form() {
                 text-sm px-6 py-2 mb-3 border-1 
                 "
               >
-                <option>هیچکس</option>
+                <option>{NO_ONE}</option>
                 {playersInfo.map((item, index) => (
                   <option key={index}>{item.name}</option>
                 ))}
@@ -299,7 +301,7 @@ export default function Form() {
             text-sm px-6 py-2 mb-3 border-1 
             "
           >
-            <option>هیچکس</option>
+            <option>{NO_ONE}</option>
             {playersInfo
               .filter((item) => item.side == side.MAFIA)
               .map((mafiaTeam, index) => (

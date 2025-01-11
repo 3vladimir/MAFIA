@@ -1,4 +1,8 @@
 export const UNKNOWN = "نامشخص";
+export const NO_ONE = "هیچکس";
+export const YES = "yes";
+export const NO = "no";
+export const UNDEFINED = "undefined";
 
 export const role = {
   GODFATHER: "پدرخوانده",

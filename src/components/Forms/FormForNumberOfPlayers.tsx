@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 
-import { AlertForInvalidNumberOfPlayers } from "../../components";
+import { AlertForInvalidNumberOfPlayers } from "@/components";
 
 type Props = {
   setIsNumberOfPlayersConfirmed: React.Dispatch<React.SetStateAction<boolean>>;

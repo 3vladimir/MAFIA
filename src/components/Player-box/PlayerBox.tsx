@@ -1,22 +1,22 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import * as React from "react";
-import { Player } from "../../types";
-import { DialogSeeRoles } from "../../components";
+import { Player } from "@/types";
+import { DialogSeeRoles } from "@/components";
 
 type Props = {
   item: Player;
-  areRolesDistributed: boolean
+  areRolesDistributed: boolean;
 };
 
-function PlayerBox({ item,areRolesDistributed }: Props) {
+function PlayerBox({ item, areRolesDistributed }: Props) {
   const [openDialog, setoOpenDialog] = React.useState(false);
 
   const handleClickOpenDialog = () => {
     setoOpenDialog(true);
   };
 
-  return (  
+  return (
     <>
       <div aria-label="player-box" className="basis-1/12">
         <button
@@ -26,13 +26,17 @@ function PlayerBox({ item,areRolesDistributed }: Props) {
           sm:p-10
           p-6 rounded-lg"
         >
-          <div className="text-white mb-1
+          <div
+            className="text-white mb-1
           lg:text-xl 
           sm:text-lg
-          text-base">{item.name}</div>
+          text-base"
+          >
+            {item.name}
+          </div>
         </button>
       </div>
-      
+
       <DialogSeeRoles
         openDialog={openDialog}
         setoOpenDialog={setoOpenDialog}

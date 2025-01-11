@@ -2,9 +2,9 @@
 "use client";
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "../../redux/store/store";
+import { RootState, AppDispatch } from "@/redux/store/store";
 import { BiSolidLike, BiSolidDislike } from "react-icons/bi";
-import { role } from "../../lib/constantsValues";
+import { role } from "@/lib/constantsValues";
 
 export default function Form() {
   const playersInfo = useSelector((state: RootState) => state.players.value);

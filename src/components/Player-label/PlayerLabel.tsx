@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import * as React from "react";
-import { Player } from "../../types";
-import { side } from "../../lib/constantsValues";
+import { Player } from "@/types";
+import { side } from "@/lib/constantsValues";
 
 type Props = {
   item: Player;

@@ -1,10 +1,10 @@
 "use client";
-import { localStorageNames, gameModes } from "../../lib/constantsValues";
-import { WholeContainer } from "../../components";
+import { localStorageNames, gameModes, UNDEFINED } from "@/lib/constantsValues";
+import { WholeContainer } from "@/components";
 
 function Main() {
   const gameResult =
-    typeof window !== "undefined"
+    typeof window !== UNDEFINED
       ? localStorage.getItem(localStorageNames.gameMode)
       : "";
 

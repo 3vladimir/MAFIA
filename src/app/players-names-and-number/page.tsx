@@ -5,7 +5,7 @@ import {
   WholeContainer,
   FormForNameOfPlayers,
   FormForNumberOfPlayers,
-} from "../../components";
+} from "@/components";
 
 function Main() {
   const [numberOfPlayers, setNumberOfPlayers] = React.useState(0);

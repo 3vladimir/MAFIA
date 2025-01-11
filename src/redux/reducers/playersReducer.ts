@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Player } from "../../types";
-import { playersInfo } from "../../lib/playersInfoStoraged";
+import { Player } from "@/types";
+import { playersInfo } from "@/lib/playersInfoStoraged";
 
 type Props = {
   value: Player[];

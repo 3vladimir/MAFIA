@@ -2,7 +2,8 @@
 "use client";
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "../../redux/store/store";
+import { RootState, AppDispatch } from "@/redux/store/store";
+import { NO_ONE } from "@/lib/constantsValues";
 
 type Props = {
   setOpenDialog: React.Dispatch<React.SetStateAction<boolean>>;
@@ -43,7 +44,7 @@ function Form({ setOpenDialog, setPlayerOut }: Props) {
           px-5 py-1 border-1 mb-2 text-sm
           "
         >
-          <option>هیچکس</option>
+          <option>{NO_ONE}</option>
           {playersInfo.map((item, index) => (
             <option key={index}>{item.name}</option>
           ))}
