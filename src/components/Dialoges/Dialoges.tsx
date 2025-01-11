@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../../redux/store/store";
 import { removePlayer } from "../../redux/reducers/playersReducer";
 import { usePathname } from "next/navigation";
+import { IoMdClose } from "react-icons/io";
 import { localStorageNames } from "../../lib/constantsValues";
 import { daysToPersian } from "../../lib/daysToPersian";
 import * as types from "../../types";
@@ -31,41 +32,46 @@ export function DialogEnterFirstDay({
   return (
     <>
       <Dialog open={openDialog}>
+        <DialogActions>
+          <button
+            className="absolute top-0 right-0 bg-orange-500 hover:bg-orange-600 rounded
+            lg:p-2
+            p-1"
+            onClick={handleClickCloseDialog}
+          >
+            <IoMdClose
+              className="text-gray-100
+              lg:text-xl
+              text-lg"
+            />
+          </button>
+        </DialogActions>
         <div
           aria-label="dialog-inner-container"
-          className="
-          lg:py-8 lg:rounded-xl
-          py-5 rounded-lg"
+          className="py-8
+          lg:rounded-xl
+          rounded-lg"
         >
           <p
             className="
             lg:px-20 
-            sm:px-14 sm:text-base
-            px-10 mb-10 text-sm"
+            sm:px-14 sm:text-base sm:mb-10
+            px-10 mb-8 text-sm"
           >
-            {`وارد روز ${daysToPersian({ round: round })} بازی میشوید`}
+            {`وارد روز ${daysToPersian({ round: round })} بازی میشوید؟`}
           </p>
           <DialogActions>
             <div
-              aria-label="buttons-container"
-              className="w-full flex justify-between"
+              aria-label="button-container"
+              className="w-full flex justify-center"
             >
               <button
-                className="basis-1/4 text-center hover:text-sky-700
+                className="hover:text-sky-700
                 sm:text-base
                 text-sm"
                 onClick={handleClickConfirm}
               >
                 تایید
-              </button>
-              <button
-                className="basis-1/4 text-center hover:text-sky-700
-                sm:text-base
-                text-sm
-                "
-                onClick={handleClickCloseDialog}
-              >
-                بازگشت
               </button>
             </div>
           </DialogActions>
@@ -91,24 +97,38 @@ export function DialogExitGame({
   return (
     <>
       <Dialog open={openDialog}>
+        <DialogActions>
+          <button
+            className="absolute top-0 right-0 bg-orange-500 hover:bg-orange-600 rounded
+            lg:p-2
+            p-1"
+            onClick={handleClickCloseDialog}
+          >
+            <IoMdClose
+              className="text-gray-100
+              lg:text-xl
+              text-lg"
+            />
+          </button>
+        </DialogActions>
         <div
           aria-label="dialog-inner-container"
-          className="
-          lg:py-8 lg:rounded-xl
-          py-5 rounded-lg"
+          className="py-8 
+          lg:rounded-xl
+          rounded-lg"
         >
           <p
             className="
             lg:px-10 
-            sm:px-7 sm:text-base
-            px-5 mb-10 text-sm"
+            sm:px-7 sm:text-base sm:mb-10
+            px-5 mb-8 text-sm"
           >
             آیا مطمئن هستید میخواهید از بازی خارج شوید؟
           </p>
           <DialogActions>
             <div
-              aria-label="buttons-container"
-              className="w-full flex justify-between"
+              aria-label="button-container"
+              className="w-full flex justify-center"
             >
               <button
                 className="basis-1/4 text-center hover:text-sky-700
@@ -117,14 +137,6 @@ export function DialogExitGame({
                 onClick={handleClickConfirmDialog}
               >
                 بله
-              </button>
-              <button
-                className="basis-1/4 text-center hover:text-sky-700
-                sm:text-base
-                text-sm"
-                onClick={handleClickCloseDialog}
-              >
-                بازگشت
               </button>
             </div>
           </DialogActions>
@@ -152,17 +164,31 @@ export function DialogPlayerOut({
   return (
     <>
       <Dialog open={openDialog}>
+        <DialogActions>
+          <button
+            className="absolute top-0 right-0 bg-orange-500 hover:bg-orange-600 rounded
+            lg:p-2
+            p-1"
+            onClick={handleClickCloseDialog}
+          >
+            <IoMdClose
+              className="text-gray-100
+              lg:text-xl
+              text-lg"
+            />
+          </button>
+        </DialogActions>
         <div
           aria-label="dialog-inner-container"
-          className="
-          lg:py-8 lg:rounded-xl
-          py-5 rounded-lg"
+          className="py-8
+          lg:rounded-xl
+          rounded-lg"
         >
           <p
             className="
             lg:px-20 
-            sm:px-16 sm:text-base
-            px-12 mb-10 text-sm"
+            sm:px-16 sm:text-base ms:mb-10
+            px-12 mb-8 text-sm"
           >
             {playerOut == "هیچکس"
               ? "هیچکس از بازی خارج نشد؟"
@@ -170,8 +196,8 @@ export function DialogPlayerOut({
           </p>
           <DialogActions>
             <div
-              aria-label="buttons-container"
-              className="w-full flex justify-between"
+              aria-label="button-container"
+              className="w-full flex justify-center"
             >
               <button
                 className="basis-1/4 text-center hover:text-sky-700
@@ -180,14 +206,6 @@ export function DialogPlayerOut({
                 onClick={handleClickConfirmDialog}
               >
                 تایید
-              </button>
-              <button
-                className="basis-1/4 text-center hover:text-sky-700
-                sm:text-base
-                text-sm"
-                onClick={handleClickCloseDialog}
-              >
-                بازگشت
               </button>
             </div>
           </DialogActions>
