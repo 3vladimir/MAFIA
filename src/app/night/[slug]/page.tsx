@@ -1,11 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import * as React from "react";
-import {
-  WholeContainer,
-  FormForDetectiveInquiry,
-  FormForNightActions,
-} from "@/components";
+import { WholeContainer, FormForNightActions } from "@/components";
 import { usePathname } from "next/navigation";
 import { nightAddress } from "@/routes";
 import { daysToPersian } from "@/lib/daysToPersian";
@@ -36,7 +32,6 @@ function Main() {
         </h1>
 
         <div aria-label="forms-container" className="text-center">
-          <FormForDetectiveInquiry />
           <FormForNightActions />
         </div>
       </div>

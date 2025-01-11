@@ -4,8 +4,15 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "@/redux/store/store";
 import { removePlayer } from "@/redux/reducers/playersReducer";
-import { role, side } from "@/lib/constantsValues";
+import { role, side, YES } from "@/lib/constantsValues";
 import { DialogNightKeels } from "@/components";
+import {
+  FormForDoctorSave,
+  FormForSniperShot,
+  FormForLecterSave,
+  FormForMafiaShot,
+  FormForDetectiveInquiry,
+} from "./";
 import {
   localStorageNames,
   dieHardAllStatuses,
@@ -32,6 +39,12 @@ export default function Form() {
   });
   const sniper = playersInfo.find((item) => {
     return item.role === role.SNIPER;
+  });
+  const doctor = playersInfo.find((item) => {
+    return item.role === role.DOCTOR;
+  });
+  const lecter = playersInfo.find((item) => {
+    return item.role === role.LECTER;
   });
   const citizensTeam = playersInfo.filter((item) => {
     return item.side == side.CITIZEN;
@@ -132,217 +145,33 @@ export default function Form() {
         JSON.stringify(nightKills)
       );
     }
+
+    if (docrotSave == doctor?.name) {
+      // doctor has saved himself and he wouldn't do this again in future
+      if (typeof window !== UNDEFINED) {
+        localStorage.setItem(localStorageNames.isDoctorSavedOnce, YES);
+      }
+    }
+
+    if (lecterSave == lecter?.name) {
+      // Dr lecter has saved himself and he wouldn't do this again in future
+      if (typeof window !== UNDEFINED) {
+        localStorage.setItem(localStorageNames.isLecterSavedOnce, YES);
+      }
+    }
+
     handleClickOpenDialog();
   }
 
   return (
     <>
+      <FormForDetectiveInquiry />
+      
       <form aria-label="night-actions" onSubmit={handleSubmit}>
-        <div
-          aria-label="doctor-save"
-          className="
-          sm:mb-8
-          mb-6
-          "
-        >
-          <p
-            className="
-            text-gray-100
-            lg:mb-2 lg:text-base
-            mb-1 text-sm
-            "
-          >
-            سپس دکتر را بیدار کنید
-          </p>
-          <div aria-label="container-for-label" className="mb-3">
-            <label
-              htmlFor="docrotSave"
-              className="
-              text-gray-100
-              lg:text-base
-              text-sm
-              "
-            >
-              فردی که دکتر نجات میدهد را مشخص کنید
-            </label>
-            <p
-              className="text-gray-300 mt-1
-              lg:text-base
-              text-sm"
-            >
-              (دکتر خودش را فقط یکبار میتواند نجات دهد)
-            </p>
-          </div>
-          <select
-            id="docrotSave"
-            ref={doctorSaveSelectRef}
-            className="rounded bg-gray-50 border-gray-200 
-            lg:px-10 lg:py-3 lg:mb-5
-            sm:text-base sm:px-8 sm:border-2
-            text-sm px-6 py-2 mb-3 border-1 
-            "
-          >
-            <option>{NO_ONE}</option>
-            {playersInfo.map((item, index) => (
-              <option key={index}>{item.name}</option>
-            ))}
-          </select>
-        </div>
-
-        <div
-          aria-label="sniper-shot"
-          className="
-          sm:mb-8
-          mb-6
-          "
-        >
-          <p
-            className="
-            text-gray-100
-            lg:mb-2 lg:text-base
-            mb-1 text-sm
-            "
-          >
-            حرفه ای را بیدار کنید
-          </p>
-          {sniperShotsNumber < 2 ? (
-            // sniper has still bullets to shot
-            <>
-              <div aria-label="container-for-label" className="mb-3">
-                <label
-                  htmlFor="sniperShot"
-                  className="
-                  text-gray-100
-                  lg:text-base
-                  text-sm
-                  "
-                >
-                  اگر حرفه ای قصد شلیک دارد،هدف شلیک او را مشخص کنید
-                </label>
-                <p
-                  className="text-gray-300 mt-1
-                  lg:text-base
-                  text-sm"
-                >
-                  (حرفه ای فقط دو گلوله برای شلیک دارد)
-                </p>
-              </div>
-              <select
-                id="sniperShot"
-                ref={sniperShotSelectRef}
-                className="rounded bg-gray-50 border-gray-200 
-                lg:px-10 lg:py-3 lg:mb-5
-                sm:text-base sm:px-8 sm:border-2
-                text-sm px-6 py-2 mb-3 border-1 
-                "
-              >
-                <option>{NO_ONE}</option>
-                {playersInfo.map((item, index) => (
-                  <option key={index}>{item.name}</option>
-                ))}
-              </select>
-            </>
-          ) : (
-            // sniper has no more bullets to shot
-            <p
-              className="
-              text-gray-100
-              lg:text-base
-              text-sm
-              "
-            >
-              حرفه ای امکان شلیک ندارد !
-            </p>
-          )}
-        </div>
-
-        <p
-          className="
-            text-gray-100
-            lg:mb-2 lg:text-base
-            mb-1 text-sm
-            "
-        >
-          اکنون تیم مافیا را بیدار کنید
-        </p>
-
-        <div
-          aria-label="lecter-save"
-          className="
-          sm:mb-8
-          mb-6
-          "
-        >
-          <div aria-label="container-for-label" className="mb-3">
-            <label
-              htmlFor="lecterSave"
-              className="
-              text-gray-100
-              lg:text-base
-              text-sm
-              "
-            >
-              فردی که دکتر لکتر نجات میدهد را مشخص کنید
-            </label>
-            <p
-              className="text-gray-300 mt-1
-              lg:text-base
-              text-sm"
-            >
-              (دکتر لکتر خودش را فقط یکبار میتواند نجات دهد)
-            </p>
-          </div>
-          <select
-            id="lecterSave"
-            ref={lecterSaveSelectRef}
-            className="rounded bg-gray-50 border-gray-200 
-            lg:px-10 lg:py-3 lg:mb-5
-            sm:text-base sm:px-8 sm:border-2
-            text-sm px-6 py-2 mb-3 border-1 
-            "
-          >
-            <option>{NO_ONE}</option>
-            {playersInfo
-              .filter((item) => item.side == side.MAFIA)
-              .map((mafiaTeam, index) => (
-                <option key={index}>{mafiaTeam.name}</option>
-              ))}
-          </select>
-        </div>
-
-        <div
-          aria-label="mafiaTeam-shot"
-          className="
-          sm:mb-8
-          mb-6
-          "
-        >
-          <div aria-label="container-for-label" className="mb-3">
-            <label
-              htmlFor="mafiaShot"
-              className="
-              text-gray-100
-              lg:text-base
-              text-sm
-              "
-            >
-              هدف شلیک پدرخوانده را مشخص کنید
-            </label>
-          </div>
-          <select
-            id="mafiaShot"
-            ref={mafiaShotSelectRef}
-            className="rounded bg-gray-50 border-gray-200 
-            lg:px-10 lg:py-3 lg:mb-5
-            sm:text-base sm:px-8 sm:border-2
-            text-sm px-6 py-2 mb-3 border-1 
-            "
-          >
-            {playersInfo.map((item, index) => (
-              <option key={index}>{item.name}</option>
-            ))}
-          </select>
-        </div>
+        <FormForDoctorSave doctorSaveSelectRef={doctorSaveSelectRef} />
+        <FormForSniperShot sniperShotSelectRef={sniperShotSelectRef} />
+        <FormForLecterSave lecterSaveSelectRef={lecterSaveSelectRef} />
+        <FormForMafiaShot mafiaShotSelectRef={mafiaShotSelectRef} />
 
         <div aria-label="container-for-button" className="mb-5">
           <button

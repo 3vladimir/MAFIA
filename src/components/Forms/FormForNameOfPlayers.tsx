@@ -71,6 +71,8 @@ export default function Form({
         localStorageNames.dieHardStatus,
         dieHardAllStatuses.withShield
       );
+      localStorage.setItem(localStorageNames.isDoctorSavedOnce, NO);
+      localStorage.setItem(localStorageNames.isDrLecterSavedOnce, NO);
     }
   }
 

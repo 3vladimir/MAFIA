@@ -31,6 +31,8 @@ export const localStorageNames = {
   gameMode: "gameMode",
   sniperShots: "sniperShots",
   dieHardStatus: "dieHardStatus",
+  isDoctorSavedOnce: "isDoctorSavedOnce",
+  isLecterSavedOnce: "isDrLecterSavedOnce",
   playersInfo: "playersInfo",
   nightKills: "nightKills",
   areRolesDistributed: "areRolesDistributed",
